@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <!-- button="@null"用来删除选择的默认圆圈 -->
+            <RadioButton
+                android:id="@+id/btn_1"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radio_button_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/english"
+                android:textColor="@drawable/radio_button_text_color"/>
+
+            <RadioButton
+                android:id="@+id/btn_2"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radio_button_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/french"
+                android:textColor="@drawable/radio_button_text_color"/>
+
+            <RadioButton
+                android:id="@+id/btn_3"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radio_button_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/japanese"
+                android:textColor="@drawable/radio_button_text_color"/>
+
+            <RadioButton
+                android:id="@+id/btn_4"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radio_button_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/russian"
+                android:textColor="@drawable/radio_button_text_color"/>
+
+        </RadioGroup>
+
+    </HorizontalScrollView>
+
+</RelativeLayout>

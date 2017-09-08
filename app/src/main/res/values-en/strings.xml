@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="see_pic">See Picture</string>
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="japanese">Japanese</string>
+    <string name="russian">Russian</string>
+    <string name="chinese">Chinese</string>
+    <string name="switch_language">Switch Language</string>
+    <string name="warn">Warn：Replace the language temporarily modify the first page directory</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="see_pic">查看图片</string>
+    <string name="english">英语</string>
+    <string name="french">法语</string>
+    <string name="japanese">日语</string>
+    <string name="russian">俄语</string>
+    <string name="chinese">中文</string>
+    <string name="switch_language">切换语言</string>
+    <string name="warn">注意：更换语言暂不修改首页面目录</string>
+</resources>
