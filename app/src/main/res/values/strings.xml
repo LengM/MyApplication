@@ -38,4 +38,5 @@
     <string name="go_out">退出教室</string>
     <string name="video">视频通话聊天</string>
     <string name="calendar">日历</string>
+    <string name="clearCache">清理缓存</string>
 </resources>

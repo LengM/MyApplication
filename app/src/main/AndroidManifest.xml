@@ -93,6 +93,7 @@
         <activity android:name=".ui.MultiPreviewActivity"/>
         <activity android:name=".ui.ImgGridViewActivity"/>
         <activity android:name=".ui.CalendarActivity"/>
+        <activity android:name=".ui.ClearCacheActivity"/>
 
     </application>
 

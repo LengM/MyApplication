@@ -1,0 +1,43 @@
+package com.yng.ming.myapplication.ui;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import com.yng.ming.myapplication.R;
+import com.yng.ming.myapplication.base.BaseActivity;
+import com.yng.ming.myapplication.util.cache.DataCleanUtil;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * 清理缓存
+ */
+public class ClearCacheActivity extends BaseActivity {
+
+    @Bind(R.id.clearCache)
+    Button clearCache;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_clear_cache);
+        init();
+    }
+
+    @OnClick({R.id.clearCache})
+    public void onClick(View view) {
+        DataCleanUtil.clearAllCache(baContext);
+        init();
+    }
+
+    private void init() {
+        try {
+            clearCache.setText(DataCleanUtil.getTotalCacheSize(getApplicationContext()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
