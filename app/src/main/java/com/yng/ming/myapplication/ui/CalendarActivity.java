@@ -15,11 +15,14 @@ import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
 import com.yng.ming.myapplication.base.OnClickListener;
 import com.yng.ming.myapplication.util.date.DateUtil;
-import com.yng.ming.myapplication.view.MyDialog;
+import com.yng.ming.myapplication.view.BottomDialog;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
+/**
+ * 日历
+ */
 public class CalendarActivity extends BaseActivity {
 
     @Bind(R.id.showDateView)
@@ -77,7 +80,7 @@ public class CalendarActivity extends BaseActivity {
             @Override
             public void onPagerChanged(int[] date) {
                 title.setText(date[0] + "年" + date[1] + "月");
-                stringDate[0] = date[0] + "年" + date[1] + "月" + date[2] + "日";
+//                stringDate[0] = date[0] + "年" + date[1] + "月" + date[2] + "日";
             }
         });
 
@@ -91,7 +94,7 @@ public class CalendarActivity extends BaseActivity {
         });
 
         // 初始化自定义Dialog ==> 弹出在底部，宽度全屏
-        final MyDialog dialog = new MyDialog(this);
+        final BottomDialog dialog = new BottomDialog(this);
         dialog.setView(viewDialog);
         dialog.show();
 

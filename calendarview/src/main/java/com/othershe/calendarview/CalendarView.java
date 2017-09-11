@@ -34,7 +34,7 @@ public class CalendarView extends ViewPager {
     private boolean showHoliday = true;//是否显示节假日(不显示农历则节假日无法显示，节假日会覆盖农历显示)
     private boolean showTerm = true;//是否显示节气
     private boolean disableBefore = false;//是否禁用默认选中日期前的所有日期
-    private boolean switchChoose = true;//单选时切换月份，是否选中上次的日期
+    private boolean switchChoose = false;//单选时切换月份，是否选中上次的日期
     private int colorSolar = R.color.deep_purple;//阳历的日期颜色
     private int colorLunar = Color.parseColor("#D4CBE2");//阴历的日期颜色和上个月下个月默认显示的日期文字颜色
     private int colorHoliday = Color.parseColor("#EC9729");//节假日的颜色
@@ -144,7 +144,8 @@ public class CalendarView extends ViewPager {
         addOnPageChangeListener(new SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-//                refreshMonthView(position);
+                // 切换页面后刷新
+                refreshMonthView(position);
                 currentPosition = position;
                 if (pagerChangeListener != null) {
                     int[] date = CalendarUtil.positionToDate(position, dateStart[0], dateStart[1]);
