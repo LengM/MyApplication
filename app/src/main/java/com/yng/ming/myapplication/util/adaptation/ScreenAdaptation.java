@@ -14,9 +14,7 @@ import static android.content.Context.WINDOW_SERVICE;
  * 屏幕适配
  * github:https://github.com/wenkaichuang0729/AutoScreenAdaptation
  */
-
 public class ScreenAdaptation {
-
 
     private Application.ActivityLifecycleCallbacks activityLifecycleCallbacks;
     private Application mApplication;

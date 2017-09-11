@@ -18,7 +18,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @OnClick({R.id.horizontalCheckButton, R.id.replaceLanguage, R.id.imgGridView, R.id.video, R.id.calendar})
+    @OnClick({R.id.horizontalCheckButton, R.id.replaceLanguage, R.id.imgGridView, R.id.video, R.id.calendar, R.id.clearCache})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.horizontalCheckButton:
@@ -35,6 +35,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.calendar:
                 startActivity(new Intent(this, CalendarActivity.class));
+                break;
+            case R.id.clearCache:
+                startActivity(new Intent(this, ClearCacheActivity.class));
                 break;
         }
     }

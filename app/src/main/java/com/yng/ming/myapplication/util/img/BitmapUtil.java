@@ -15,7 +15,10 @@ import java.io.FileOutputStream;
  * Bitmap工具类
  */
 
-public class BitmapUtil {
+public final class BitmapUtil {
+
+    private BitmapUtil() {
+    }
 
     /**
      * 修改bitmap尺寸

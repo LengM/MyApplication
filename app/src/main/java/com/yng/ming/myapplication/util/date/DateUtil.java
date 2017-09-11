@@ -9,7 +9,10 @@ import java.util.Date;
  * Created by Bright on 2017/7/31 0031
  * 日期工具类
  */
-public class DateUtil {
+public final class DateUtil {
+
+    private DateUtil() {
+    }
 
     public static Date StringToDate(String time, String format) {
         try {
