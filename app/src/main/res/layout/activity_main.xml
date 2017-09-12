@@ -34,12 +34,6 @@
                 android:text="@string/imgGridView"/>
 
             <Button
-                android:id="@+id/video"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/video"/>
-
-            <Button
                 android:id="@+id/calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

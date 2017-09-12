@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
-import com.yng.ming.myapplication.ui.video.ECLoginActivity;
 
 import butterknife.OnClick;
 
@@ -18,7 +17,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @OnClick({R.id.horizontalCheckButton, R.id.replaceLanguage, R.id.imgGridView, R.id.video, R.id.calendar, R.id.clearCache})
+    @OnClick({R.id.horizontalCheckButton, R.id.replaceLanguage, R.id.imgGridView, R.id.calendar, R.id.clearCache})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.horizontalCheckButton:
@@ -29,9 +28,6 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.imgGridView:
                 startActivity(new Intent(this, ImgGridViewActivity.class));
-                break;
-            case R.id.video:
-                startActivity(new Intent(this, ECLoginActivity.class));
                 break;
             case R.id.calendar:
                 startActivity(new Intent(this, CalendarActivity.class));

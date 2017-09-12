@@ -21,8 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    //环信easeui
-    compile project(path: ':easeui')
+
     compile project(path:':calendarview')
 
     // Android兼容包
