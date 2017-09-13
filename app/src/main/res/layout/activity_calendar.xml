@@ -10,9 +10,9 @@
     <Button
         android:id="@+id/openCalendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_margin="20dp"
-        android:text="打开日历"/>
+        android:text="@string/openCalendar"/>
 
     <TextView
         android:id="@+id/showDateView"

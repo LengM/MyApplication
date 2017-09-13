@@ -37,6 +37,7 @@
         <activity android:name=".ui.ImgGridViewActivity"/>
         <activity android:name=".ui.CalendarActivity"/>
         <activity android:name=".ui.ClearCacheActivity"/>
+        <activity android:name=".ui.EditDemoActivity"/>
 
     </application>
 

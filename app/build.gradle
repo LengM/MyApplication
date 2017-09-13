@@ -55,9 +55,6 @@ dependencies {
     // 大图和图片浏览 https://github.com/kareluo/IntensifyImageView
     compile 'me.kareluo.intensify:image:1.1.0'
 
-    // 订阅方式实现事件通知；代替 Handler 和广播
-    compile 'org.greenrobot:eventbus:3.0.0'
-
-    // volley网络请求
-    compile 'com.mcxiaoke.volley:library:1.0.19'
+    // 一个开源的Android库,这里我们使用到输入框 https://github.com/rey5137/material
+    compile 'com.github.rey5137:material:1.2.4'
 }

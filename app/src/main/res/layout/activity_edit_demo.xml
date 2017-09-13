@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+
+    <!-- 登录，手机号密码输入及登录按钮等 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="110dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <!-- divider:分割线；label:输入框顶部title；support:输入框分割线下面的提示 -->
+        <com.rey.material.widget.EditText
+            android:id="@+id/phoneNumEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@null"
+            android:hint="@string/phoneNumber"
+            android:singleLine="true"
+            android:textSize="15sp"
+            app:et_dividerHeight="1dp"
+            app:et_dividerPadding="8dp"
+            app:et_labelEnable="true"
+            app:et_labelPadding="8dp"
+            app:et_labelTextSize="10sp"
+            app:et_supportMode="helper"
+            app:et_supportPadding="8dp"
+            app:et_supportTextSize="10sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/verifyCodeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/SMSCode"
+                android:inputType="textPassword"
+                android:maxLength="6"
+                android:singleLine="true"
+                android:textSize="15sp"
+                app:et_dividerHeight="1dp"
+                app:et_dividerPadding="8dp"
+                app:et_labelEnable="true"
+                app:et_labelPadding="8dp"
+                app:et_labelTextSize="10sp"
+                app:et_supportMode="helper"
+                app:et_supportPadding="8dp"
+                app:et_supportTextSize="10sp"/>
+
+            <Button
+                android:id="@+id/getVerifyCode"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/get_verify_code_button_background"
+                android:enabled="false"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="3dp"
+                android:text="@string/getCode"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

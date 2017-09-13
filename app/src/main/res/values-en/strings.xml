@@ -8,4 +8,9 @@
     <string name="chinese">Chinese</string>
     <string name="switch_language">Switch Language</string>
     <string name="warn">Warn：Replace the language temporarily modify the first page directory</string>
+    <string name="openCalendar">open calendar</string>
+    <string name="phoneNumber">phone number</string>
+    <string name="SMSCode">SMS code</string>
+    <string name="getCode">Get SMS code</string>
+    <string name="phoneError">Wrong format of phone number</string>
 </resources>

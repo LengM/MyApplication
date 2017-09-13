@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,35 +18,48 @@
             <Button
                 android:id="@+id/horizontalCheckButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/horizontalCheckButton"/>
 
             <Button
                 android:id="@+id/replaceLanguage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/replaceLanguage"/>
 
             <Button
                 android:id="@+id/imgGridView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/imgGridView"/>
 
             <Button
                 android:id="@+id/calendar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/calendar"/>
 
             <Button
                 android:id="@+id/clearCache"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/clearCache"/>
+
+            <Button
+                android:id="@+id/upShowAndEdit"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/upShowAndEdit"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
 
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>
