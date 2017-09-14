@@ -24,8 +24,6 @@ public class ReplaceLanguageActivity extends BaseActivity {
 
     private void setToolbar() {
         setTitleText("更换语言");
-        setLeftText("返回");
-        setLeftTextSize(12);
     }
 
     @OnClick({R.id.btn_en, R.id.btn_ch})
