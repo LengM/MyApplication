@@ -28,10 +28,17 @@ public class ImgGridViewActivity extends BaseActivity implements ImageAdapter.Im
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img_grid_view);
         imgList.clear();
+        setToolbar();
         setDate();
         adapter = new ImageAdapter(this, imgList);
         imgGridView.setAdapter(adapter);
         adapter.setListener(this);
+    }
+
+    private void setToolbar() {
+        setTitleText("图片列表");
+        setLeftText("返回");
+        setLeftTextSize(12);
     }
 
     @Override

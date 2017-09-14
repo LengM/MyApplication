@@ -19,6 +19,13 @@ public class ReplaceLanguageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_replace_language);
+        setToolbar();
+    }
+
+    private void setToolbar() {
+        setTitleText("更换语言");
+        setLeftText("返回");
+        setLeftTextSize(12);
     }
 
     @OnClick({R.id.btn_en, R.id.btn_ch})

@@ -32,6 +32,7 @@ public class CalendarActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+        setToolbar();
     }
 
     @OnClick({R.id.openCalendar})
@@ -41,6 +42,12 @@ public class CalendarActivity extends BaseActivity {
                 showCalendar();
                 break;
         }
+    }
+
+    private void setToolbar() {
+        setTitleText("日历");
+        setLeftText("返回");
+        setLeftTextSize(12);
     }
 
     public void showCalendar() {

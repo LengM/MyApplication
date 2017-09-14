@@ -23,12 +23,19 @@ public class ClearCacheActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clear_cache);
+        setToolbar();
         init();
+    }
+
+    private void setToolbar() {
+        setTitleText("清理缓存");
+        setLeftText("返回");
+        setLeftTextSize(12);
     }
 
     @OnClick({R.id.clearCache})
     public void onClick(View view) {
-        DataCleanUtil.clearAllCache(baContext);
+        DataCleanUtil.clearAllCache(baseContext);
         init();
     }
 

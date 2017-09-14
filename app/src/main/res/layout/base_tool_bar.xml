@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -14,11 +13,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="#00000000"
-        android:translationZ="4dp">
+        android:background="#00000000">
 
         <RelativeLayout
-            android:id="@+id/rl_left_toolbar"
+            android:id="@+id/baseLeftToolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -28,7 +26,7 @@
             android:paddingRight="16dp">
 
             <TextView
-                android:id="@+id/tv_left"
+                android:id="@+id/baseLeftTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
@@ -41,16 +39,16 @@
 
 
         <RelativeLayout
-            android:id="@+id/rl_right_toolbar"
+            android:id="@+id/baseRightToolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
+            android:layout_gravity="center_vertical|end"
             android:gravity="center"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <TextView
-                android:id="@+id/tv_right"
+                android:id="@+id/baseRightTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
@@ -58,10 +56,11 @@
                 android:lines="1"
                 android:maxLength="5"
                 tools:text="确定"/>
+
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_center"
+            android:id="@+id/baseTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -74,9 +73,11 @@
     </FrameLayout>
 
     <View
+        android:id="@+id/baseDividerView"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#E6E6E6"/>
+
 </LinearLayout>
 
 

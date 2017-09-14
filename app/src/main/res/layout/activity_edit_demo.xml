@@ -6,6 +6,7 @@
               android:fitsSystemWindows="true"
               android:orientation="vertical">
 
+    <include layout="@layout/base_tool_bar"/>
 
     <!-- 登录，手机号密码输入及登录按钮等 -->
     <LinearLayout
