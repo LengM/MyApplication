@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -28,16 +28,19 @@ import butterknife.ButterKnife;
 
 /**
  * Activity基础类
- * 可按照需要添加对应的标题栏, 例如:
- * setToolbar("返回","标题")
  * <p>
- * 标题右侧点击可添加弹出框，需要传入弹出框内容(List<String>)以及弹出框中item点击事件
+ * 使用标题栏方法：
+ * 1.在布局文件中引入标题栏:<include layout="@layout/base_tool_bar"/>
+ * 2.使用setXXX方法可以对标题栏信息进行设置
+ * 3.对于标题展示，你可以将设置标题数据的方法放在onResume生命周期之前；也可以自行调用setBaseToolbar()方法
  * <p>
- * 详情参照方法
+ * 其他方法：
+ * 1.收起软键盘：hideSoftInput();
+ * 2.隐藏标题栏右侧视图(动态需求)：hideRightMenu();
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected Context baContext;//上下文
+    protected Context baseContext;//上下文
     private final static String TAG = "BaseActivity";
     protected MainApplication mainApplication;
 
@@ -45,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logcat.i(this.toString() + " - ==> onCreate...");
-        baContext = this;
+        baseContext = this;
         // 透明状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -107,169 +110,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
-    /** ------------------------------------左侧toolbar按钮设置---------------------------------------- **/
-
-    /**
-     * 左侧文字+左侧图标+自定义点击事件
-     *
-     * @param text     左侧文字
-     * @param icon     左侧图标
-     * @param listener 点击事件
-     */
-    protected void setLeftView(String text, int icon, OnClickListener listener) {
-        TextView left = (TextView) findViewById(R.id.tv_left);
-        left.setText(text);
-        RelativeLayout rl_left_toolbar = (RelativeLayout) findViewById(R.id.rl_left_toolbar);
-        if (icon != 0) {
-            Drawable drawable = getResources().getDrawable(icon);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight()); // 设置边界
-            left.setCompoundDrawables(drawable, null, null, null);// 画在左边
-        }
-        rl_left_toolbar.setOnClickListener(listener);
-    }
-
-    /**
-     * 左侧文字+自定义点击事件
-     *
-     * @param text     左侧文字
-     * @param listener 点击事件
-     */
-    protected void setLeftView(String text, OnClickListener listener) {
-        setLeftView(text, 0, listener);
-    }
-
-    /**
-     * 左侧图标+自定义点击事件
-     *
-     * @param icon     左侧图标
-     * @param listener 点击事件
-     */
-    protected void setLeftView(int icon, OnClickListener listener) {
-        setLeftView("", icon, listener);
-    }
-
-    /**
-     * 左侧图标文字+返回事件
-     *
-     * @param text 左侧文字
-     * @param icon 左侧图标
-     */
-    protected void setLeftView(String text, int icon) {
-        setLeftView(text, icon, new OnClickListener() {
-            @Override
-            public void onNoDoubleClick(View v) {
-                finish();
-            }
-        });
-    }
-
-    /**
-     * 左侧图标+返回事件
-     *
-     * @param icon 左侧图标
-     */
-    protected void setLeftView(int icon) {
-        setLeftView("", icon);
-    }
-
-    /**
-     * 左侧文字+返回事件
-     *
-     * @param text 左侧文字
-     */
-    protected void setLeftView(String text) {
-        setLeftView(text, 0);
-    }
-
-    /** ------------------------------------中间toolbar按钮设置---------------------------------------- **/
-
-    /**
-     * 仅标题
-     *
-     * @param text            中间文字
-     * @param centerTextColor 文字颜色
-     */
-    protected void setToolbar(String text, int centerTextColor) {
-        TextView tv_center = (TextView) findViewById(R.id.tv_center);
-        tv_center.setText(text);
-        tv_center.setTextColor(this.getResources().getColor(centerTextColor));
-    }
-
-    /**
-     * 设置左侧文字+中间文字+返回事件
-     *
-     * @param textLeft 左侧文字
-     * @param text     中间文字
-     */
-    protected void setToolbar(String textLeft, String text, int centerTextColor) {
-        setToolbar(text, centerTextColor);
-        setLeftView(textLeft);
-    }
-
-    /**
-     * 中间文字+左侧图标+返回事件
-     *
-     * @param icon 左侧图标
-     * @param text 中间文字
-     */
-    protected void setToolbar(int icon, String text, int centerTextColor) {
-        setToolbar(text, centerTextColor);
-        setLeftView(icon);
-    }
-
-    /**
-     * 左侧文字图标+中间文字+返回事件
-     *
-     * @param textLeft 左侧文字
-     * @param icon     左侧图标
-     * @param text     中间文字
-     */
-    protected void setToolbar(String textLeft, int icon, String text, int centerTextColor) {
-        setToolbar(text, centerTextColor);
-        setLeftView(textLeft, icon);
-    }
-
-    /**
-     * 左侧问题图标+自定义点击事件+中间文字
-     *
-     * @param textLeft 左侧文字
-     * @param icon     左侧图标
-     * @param listener 点击事件
-     * @param text     中间文字
-     */
-    protected void setToolbar(String textLeft, int icon, OnClickListener listener, String text, int centerTextColor) {
-        setToolbar(text, centerTextColor);
-        setLeftView(textLeft, icon, listener);
-    }
-
-    /** ------------------------------------右侧toolbar按钮设置---------------------------------------- **/
-
-    /**
-     * 右侧文字+右侧图标+自定义点击事件
-     *
-     * @param rightText 右侧文字
-     * @param icon      右侧图标
-     * @param listener  点击事件
-     */
-    protected void setRightView(String rightText, int icon, OnClickListener listener, int rightTextColor) {
-        RelativeLayout rl_right_toolbar = (RelativeLayout) findViewById(R.id.rl_right_toolbar);
-        rl_right_toolbar.setOnClickListener(listener);
-        // 右侧的按钮
-        TextView tv_right = (TextView) findViewById(R.id.tv_right);
-        tv_right.setText(rightText);
-        tv_right.setTextColor(this.getResources().getColor(rightTextColor));
-        if (icon != 0) {
-            Drawable drawable = getResources().getDrawable(icon);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight()); // 设置边界
-            tv_right.setCompoundDrawables(drawable, null, null, null);// 画在左边
-        }
-    }
-
-    protected void hideRightMenu() {
-        RelativeLayout rl_right_toolbar = (RelativeLayout) findViewById(R.id.rl_right_toolbar);
-        rl_right_toolbar.setVisibility(View.GONE);
-    }
-
     /**
      * 重写onStop()方法, 取消Glide加载图片请求
      */
@@ -301,18 +141,22 @@ public abstract class BaseActivity extends AppCompatActivity {
             InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         } catch (Exception e) {
-            Log.i(TAG, "----" + e.toString());
+            Logcat.i(TAG + e.toString());
         }
+    }
 
+    /**
+     * 隐藏标题栏右侧按钮
+     */
+    protected void hideRightMenu() {
+        RelativeLayout baseRightToolbar = (RelativeLayout) findViewById(R.id.baseRightToolbar);
+        baseRightToolbar.setVisibility(View.GONE);
     }
 
     //////////////////////////////   EditView点击空白区域隐藏输入法软键盘   //////////////////////////////
 
     /**
      * EditView点击空白区域隐藏输入法软键盘
-     *
-     * @param ev
-     * @return
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -328,10 +172,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * EditView点击空白区域隐藏输入法软键盘:
      * 根据EditText所在坐标和用户点击的坐标相对比，来判断是否隐藏键盘，因为当用户点击EditText时则不能隐藏
-     *
-     * @param v
-     * @param event
-     * @return
      */
     private boolean isShouldHideKeyboard(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
@@ -341,13 +181,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                     top = l[1],
                     bottom = top + v.getHeight(),
                     right = left + v.getWidth();
-            if (event.getX() > left && event.getX() < right
-                    && event.getY() > top && event.getY() < bottom) {
-                // 点击EditText的事件，忽略它
-                return false;
-            } else {
-                return true;
-            }
+            return !(event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom);
         }
         // 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditText上，和用户用轨迹球选择其他的焦点
         return false;
@@ -355,14 +190,151 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * EditView点击空白区域隐藏输入法软键盘:获取InputMethodManager隐藏软键盘
-     *
-     * @param token
      */
     private void hideKeyboard(IBinder token) {
         if (token != null) {
             InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    ///////////////////////////////////// 标题栏 ///////////////////////////////////////////////
+
+    public BaseActivity setLeftText(String leftText) {
+        TextView baseLeftTextView = (TextView) findViewById(R.id.baseLeftTextView);
+        if (leftText != null && !leftText.isEmpty()) {
+            baseLeftTextView.setText(leftText);
+        }
+        return this;
+    }
+
+    public BaseActivity setLeftIcon(int leftIcon) {
+        TextView baseLeftTextView = (TextView) findViewById(R.id.baseLeftTextView);
+        if (leftIcon != 0) {
+            Drawable drawable = ContextCompat.getDrawable(baseContext, leftIcon);
+            // 设置边界
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            // 画在左边
+            baseLeftTextView.setCompoundDrawables(drawable, null, null, null);
+        }
+        return this;
+    }
+
+    public BaseActivity setLeftOnClickFinish() {
+        RelativeLayout baseLeftToolbar = (RelativeLayout) findViewById(R.id.baseLeftToolbar);
+        baseLeftToolbar.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                finish();
+            }
+        });
+        return this;
+    }
+
+    public BaseActivity setLeftOnClickListener(OnClickListener leftOnClickListener) {
+        RelativeLayout baseLeftToolbar = (RelativeLayout) findViewById(R.id.baseLeftToolbar);
+        baseLeftToolbar.setOnClickListener(leftOnClickListener);
+        return this;
+    }
+
+    public BaseActivity setLeftTextColor(int leftTextColor) {
+        TextView baseLeftTextView = (TextView) findViewById(R.id.baseLeftTextView);
+        if (leftTextColor != 0) {
+            baseLeftTextView.setTextColor(leftTextColor);
+        }
+        return this;
+    }
+
+    public BaseActivity setLeftToolbarPadding(int left, int top, int right, int bottom) {
+        RelativeLayout baseLeftToolbar = (RelativeLayout) findViewById(R.id.baseLeftToolbar);
+        baseLeftToolbar.setPadding(left, top, right, bottom);
+        return this;
+    }
+
+    public BaseActivity setLeftTextSize(int leftTextSize) {
+        TextView baseLeftTextView = (TextView) findViewById(R.id.baseLeftTextView);
+        if (leftTextSize != 0) {
+            baseLeftTextView.setTextSize(leftTextSize);
+        }
+        return this;
+    }
+
+    public BaseActivity setTitleText(String titleText) {
+        TextView baseTitle = (TextView) findViewById(R.id.baseTitle);
+        if (titleText != null && !titleText.isEmpty()) {
+            baseTitle.setText(titleText);
+        }
+        return this;
+    }
+
+    public BaseActivity setTitleTextColor(int titleTextColor) {
+        TextView baseTitle = (TextView) findViewById(R.id.baseTitle);
+        if (titleTextColor != 0) {
+            baseTitle.setTextColor(titleTextColor);
+        }
+        return this;
+    }
+
+    public BaseActivity setTitleTextSize(int titleTextSize) {
+        TextView baseTitle = (TextView) findViewById(R.id.baseTitle);
+        if (titleTextSize != 0) {
+            baseTitle.setTextSize(titleTextSize);
+        }
+        return this;
+    }
+
+    public BaseActivity setRightText(String rightText) {
+        TextView baseRightTextView = (TextView) findViewById(R.id.baseRightTextView);
+        if (rightText != null && !rightText.isEmpty()) {
+            baseRightTextView.setText(rightText);
+        }
+        return this;
+    }
+
+    public BaseActivity setRightIcon(int rightIcon) {
+        TextView baseRightTextView = (TextView) findViewById(R.id.baseRightTextView);
+        if (rightIcon != 0) {
+            Drawable drawable = ContextCompat.getDrawable(baseContext, rightIcon);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            baseRightTextView.setCompoundDrawables(drawable, null, null, null);
+        }
+        return this;
+    }
+
+    public BaseActivity setRightOnClickListener(OnClickListener rightOnClickListener) {
+        RelativeLayout baseRightToolbar = (RelativeLayout) findViewById(R.id.baseRightToolbar);
+        if (rightOnClickListener != null) {
+            baseRightToolbar.setOnClickListener(rightOnClickListener);
+        }
+        return this;
+    }
+
+    public BaseActivity setRightTextColor(int rightTextColor) {
+        TextView baseRightTextView = (TextView) findViewById(R.id.baseRightTextView);
+        if (rightTextColor != 0) {
+            baseRightTextView.setTextColor(rightTextColor);
+        }
+        return this;
+    }
+
+    public BaseActivity setRightTextSize(int rightTextSize) {
+        TextView baseRightTextView = (TextView) findViewById(R.id.baseRightTextView);
+        if (rightTextSize != 0) {
+            baseRightTextView.setTextSize(rightTextSize);
+        }
+        return this;
+    }
+
+    public BaseActivity setRightToolbarPadding(int left, int top, int right, int bottom) {
+        RelativeLayout baseRightToolbar = (RelativeLayout) findViewById(R.id.baseRightToolbar);
+        baseRightToolbar.setPadding(left, top, right, bottom);
+        return this;
+    }
+
+    public BaseActivity setShowDividerView(boolean showDividerView) {
+        View baseDividerView = findViewById(R.id.baseDividerView);
+        baseDividerView.setVisibility(showDividerView ? View.VISIBLE : View.GONE);
+        return this;
     }
 
 }

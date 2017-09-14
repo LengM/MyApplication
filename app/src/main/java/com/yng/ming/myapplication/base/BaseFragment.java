@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +23,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
  * Fragment基础类
- * 可按照需要添加对应的标题栏, 例如:
- * setToolbar("返回","标题")
- * <p>
- * 详情参照方法
+ * 标题使用方法参照BaseActivity
  */
 public abstract class BaseFragment extends Fragment {
 
@@ -93,190 +91,12 @@ public abstract class BaseFragment extends Fragment {
         Logcat.i(bfActivity + "." + this.toString() + " - ==> onDestroyView...");
     }
 
-    /** ------------------------------------左侧toolbar按钮设置---------------------------------------- **/
-
     /**
-     * 左侧文字+左侧图标+自定义点击事件
-     *
-     * @param text     左侧文字
-     * @param icon     左侧图标
-     * @param listener 点击事件
+     * 隐藏标题栏右侧按钮
      */
-    protected void setLeftView(String text, int icon, OnClickListener listener) {
-        TextView left = (TextView) view.findViewById(R.id.tv_left);
-        left.setText(text);
-        RelativeLayout rl_left_toolbar = (RelativeLayout) view.findViewById(R.id.rl_left_toolbar);
-        if (icon != 0) {
-            Drawable drawable = getResources().getDrawable(icon);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight()); // 设置边界
-            left.setCompoundDrawables(drawable, null, null, null);// 画在左边
-        }
-        rl_left_toolbar.setOnClickListener(listener);
-    }
-
-    protected void setLeftView(String text, int icon, int color, OnClickListener listener) {
-        TextView left = (TextView) view.findViewById(R.id.tv_left);
-        left.setText(text);
-        left.setTextColor(getContext().getResources().getColor(color));
-        RelativeLayout rl_left_toolbar = (RelativeLayout) view.findViewById(R.id.rl_left_toolbar);
-        if (icon != 0) {
-            Drawable drawable = getResources().getDrawable(icon);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight()); // 设置边界
-            left.setCompoundDrawables(drawable, null, null, null);// 画在左边
-        }
-        rl_left_toolbar.setOnClickListener(listener);
-    }
-
-    /**
-     * 左侧文字+自定义点击事件
-     *
-     * @param text     左侧文字
-     * @param listener 点击事件
-     */
-    protected void setLeftView(String text, OnClickListener listener) {
-        setLeftView(text, 0, listener);
-    }
-
-    /**
-     * 左侧图标+自定义点击事件
-     *
-     * @param icon     左侧图标
-     * @param listener 点击事件
-     */
-    protected void setLeftView(int icon, OnClickListener listener) {
-        setLeftView("", icon, listener);
-    }
-
-    /**
-     * 左侧图标文字+返回事件
-     *
-     * @param text 左侧文字
-     * @param icon 左侧图标
-     */
-    protected void setLeftView(String text, int icon) {
-        setLeftView(text, icon, new OnClickListener() {
-            @Override
-            public void onNoDoubleClick(View v) {
-                getActivity().finish();
-            }
-        });
-    }
-
-    /**
-     * 左侧图标+返回事件
-     *
-     * @param icon 左侧图标
-     */
-    protected void setLeftView(int icon) {
-        setLeftView("", icon);
-    }
-
-    /**
-     * 左侧文字+返回事件
-     *
-     * @param text 左侧文字
-     */
-    protected void setLeftView(String text) {
-        setLeftView(text, 0);
-    }
-
-    /** ------------------------------------中间toolbar按钮设置---------------------------------------- **/
-
-    /**
-     * 仅标题
-     *
-     * @param text      中间文字
-     * @param textColor 文字颜色
-     */
-    protected void setToolbar(String text, int textColor) {
-        TextView tv_center = (TextView) view.findViewById(R.id.tv_center);
-        tv_center.setText(text);
-        tv_center.setTextColor(getContext().getResources().getColor(textColor));
-    }
-
-    /**
-     * 设置左侧文字+中间文字+返回事件
-     *
-     * @param textLeft 左侧文字
-     * @param text     中间文字
-     */
-    protected void setToolbar(String textLeft, String text, int textColor) {
-        setToolbar(text, textColor);
-        setLeftView(textLeft);
-    }
-
-    /**
-     * 中间文字+左侧图标+返回事件
-     *
-     * @param icon 左侧图标
-     * @param text 中间文字
-     */
-    protected void setToolbar(int icon, String text, int textColor) {
-        setToolbar(text, textColor);
-        setLeftView(icon);
-    }
-
-    /**
-     * 左侧文字图标+中间文字+返回事件
-     *
-     * @param textLeft 左侧文字
-     * @param icon     左侧图标
-     * @param text     中间文字
-     */
-    protected void setToolbar(String textLeft, int icon, String text, int textColor) {
-        setToolbar(text, textColor);
-        setLeftView(textLeft, icon);
-    }
-
-    /**
-     * 左侧问题图标+自定义点击事件+中间文字
-     *
-     * @param textLeft 左侧文字
-     * @param icon     左侧图标
-     * @param listener 点击事件
-     * @param text     中间文字
-     */
-    protected void setToolbar(String textLeft, int icon, OnClickListener listener, String text, int textColor) {
-        setToolbar(text, textColor);
-        setLeftView(textLeft, icon, listener);
-    }
-
-    /**
-     * 左侧文字,图标,颜色,事件;中间文字,颜色
-     *
-     * @param leftText     左侧文字
-     * @param leftIcon     左侧图标
-     * @param leftColor    左侧文字颜色
-     * @param leftListener 左侧点击事件
-     * @param centerText   中间文字
-     * @param centerColor  中间文字颜色
-     */
-    protected void setToolbar(String leftText, int leftIcon, int leftColor, OnClickListener leftListener, String centerText, int centerColor) {
-        setToolbar(centerText, centerColor);
-        setLeftView(leftText, leftIcon, leftColor, leftListener);
-    }
-
-    /** ------------------------------------右侧toolbar按钮设置---------------------------------------- **/
-
-    /**
-     * 右侧文字+右侧图标+自定义点击事件
-     *
-     * @param rightText 右侧文字
-     * @param icon      右侧图标
-     * @param listener  点击事件
-     */
-    protected void setRightView(String rightText, int icon, OnClickListener listener, int rightTextColor) {
-        RelativeLayout rl_right_toolbar = (RelativeLayout) view.findViewById(R.id.rl_right_toolbar);
-        rl_right_toolbar.setOnClickListener(listener);
-        // 右侧的按钮
-        TextView tv_right = (TextView) view.findViewById(R.id.tv_right);
-        tv_right.setText(rightText);
-        tv_right.setTextColor(this.getResources().getColor(rightTextColor));
-        if (icon != 0) {
-            Drawable drawable = getResources().getDrawable(icon);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight()); // 设置边界
-            tv_right.setCompoundDrawables(drawable, null, null, null);// 画在左边
-        }
+    protected void hideRightMenu() {
+        RelativeLayout baseRightToolbar = (RelativeLayout) view.findViewById(R.id.baseRightToolbar);
+        baseRightToolbar.setVisibility(View.GONE);
     }
 
     /**
@@ -301,4 +121,144 @@ public abstract class BaseFragment extends Fragment {
             Log.i(TAG, "----" + e.toString());
         }
     }
+
+    ///////////////////////////////////// 标题栏 ///////////////////////////////////////////////
+
+    public BaseFragment setLeftText(String leftText) {
+        TextView baseLeftTextView = (TextView) view.findViewById(R.id.baseLeftTextView);
+        if (leftText != null && !leftText.isEmpty()) {
+            baseLeftTextView.setText(leftText);
+        }
+        return this;
+    }
+
+    public BaseFragment setLeftIcon(int leftIcon) {
+        TextView baseLeftTextView = (TextView) view.findViewById(R.id.baseLeftTextView);
+        if (leftIcon != 0) {
+            Drawable drawable = ContextCompat.getDrawable(bfActivity, leftIcon);
+            // 设置边界
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            // 画在左边
+            baseLeftTextView.setCompoundDrawables(drawable, null, null, null);
+        }
+        return this;
+    }
+
+    public BaseFragment setLeftOnClickFinish() {
+        RelativeLayout baseLeftToolbar = (RelativeLayout) view.findViewById(R.id.baseLeftToolbar);
+        baseLeftToolbar.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                getActivity().finish();
+            }
+        });
+        return this;
+    }
+
+    public BaseFragment setLeftOnClickListener(OnClickListener leftOnClickListener) {
+        RelativeLayout baseLeftToolbar = (RelativeLayout) view.findViewById(R.id.baseLeftToolbar);
+        baseLeftToolbar.setOnClickListener(leftOnClickListener);
+        return this;
+    }
+
+    public BaseFragment setLeftTextColor(int leftTextColor) {
+        TextView baseLeftTextView = (TextView) view.findViewById(R.id.baseLeftTextView);
+        if (leftTextColor != 0) {
+            baseLeftTextView.setTextColor(leftTextColor);
+        }
+        return this;
+    }
+
+    public BaseFragment setLeftToolbarPadding(int left, int top, int right, int bottom) {
+        RelativeLayout baseLeftToolbar = (RelativeLayout) view.findViewById(R.id.baseLeftToolbar);
+        baseLeftToolbar.setPadding(left, top, right, bottom);
+        return this;
+    }
+
+    public BaseFragment setLeftTextSize(int leftTextSize) {
+        TextView baseLeftTextView = (TextView) view.findViewById(R.id.baseLeftTextView);
+        if (leftTextSize != 0) {
+            baseLeftTextView.setTextSize(leftTextSize);
+        }
+        return this;
+    }
+
+    public BaseFragment setTitleText(String titleText) {
+        TextView baseTitle = (TextView) view.findViewById(R.id.baseTitle);
+        if (titleText != null && !titleText.isEmpty()) {
+            baseTitle.setText(titleText);
+        }
+        return this;
+    }
+
+    public BaseFragment setTitleTextColor(int titleTextColor) {
+        TextView baseTitle = (TextView) view.findViewById(R.id.baseTitle);
+        if (titleTextColor != 0) {
+            baseTitle.setTextColor(titleTextColor);
+        }
+        return this;
+    }
+
+    public BaseFragment setTitleTextSize(int titleTextSize) {
+        TextView baseTitle = (TextView) view.findViewById(R.id.baseTitle);
+        if (titleTextSize != 0) {
+            baseTitle.setTextSize(titleTextSize);
+        }
+        return this;
+    }
+
+    public BaseFragment setRightText(String rightText) {
+        TextView baseRightTextView = (TextView) view.findViewById(R.id.baseRightTextView);
+        if (rightText != null && !rightText.isEmpty()) {
+            baseRightTextView.setText(rightText);
+        }
+        return this;
+    }
+
+    public BaseFragment setRightIcon(int rightIcon) {
+        TextView baseRightTextView = (TextView) view.findViewById(R.id.baseRightTextView);
+        if (rightIcon != 0) {
+            Drawable drawable = ContextCompat.getDrawable(bfActivity, rightIcon);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            baseRightTextView.setCompoundDrawables(drawable, null, null, null);
+        }
+        return this;
+    }
+
+    public BaseFragment setRightOnClickListener(OnClickListener rightOnClickListener) {
+        RelativeLayout baseRightToolbar = (RelativeLayout) view.findViewById(R.id.baseRightToolbar);
+        if (rightOnClickListener != null) {
+            baseRightToolbar.setOnClickListener(rightOnClickListener);
+        }
+        return this;
+    }
+
+    public BaseFragment setRightTextColor(int rightTextColor) {
+        TextView baseRightTextView = (TextView) view.findViewById(R.id.baseRightTextView);
+        if (rightTextColor != 0) {
+            baseRightTextView.setTextColor(rightTextColor);
+        }
+        return this;
+    }
+
+    public BaseFragment setRightTextSize(int rightTextSize) {
+        TextView baseRightTextView = (TextView) view.findViewById(R.id.baseRightTextView);
+        if (rightTextSize != 0) {
+            baseRightTextView.setTextSize(rightTextSize);
+        }
+        return this;
+    }
+
+    public BaseFragment setRightToolbarPadding(int left, int top, int right, int bottom) {
+        RelativeLayout baseRightToolbar = (RelativeLayout) view.findViewById(R.id.baseRightToolbar);
+        baseRightToolbar.setPadding(left, top, right, bottom);
+        return this;
+    }
+
+    public BaseFragment setShowDividerView(boolean showDividerView) {
+        View baseDividerView = view.findViewById(R.id.baseDividerView);
+        baseDividerView.setVisibility(showDividerView ? View.VISIBLE : View.GONE);
+        return this;
+    }
+
 }
