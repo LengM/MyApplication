@@ -37,8 +37,6 @@ public class ImgGridViewActivity extends BaseActivity implements ImageAdapter.Im
 
     private void setToolbar() {
         setTitleText("图片列表");
-        setLeftText("返回");
-        setLeftTextSize(12);
     }
 
     @Override

@@ -32,8 +32,6 @@ public class EditDemoActivity extends BaseActivity {
 
     private void setToolbar() {
         setTitleText("带提示输入框");
-        setLeftText("返回");
-        setLeftTextSize(12);
     }
 
     @Override

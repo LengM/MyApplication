@@ -46,8 +46,6 @@ public class CalendarActivity extends BaseActivity {
 
     private void setToolbar() {
         setTitleText("日历");
-        setLeftText("返回");
-        setLeftTextSize(12);
     }
 
     public void showCalendar() {

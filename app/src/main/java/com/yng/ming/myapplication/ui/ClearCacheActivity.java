@@ -29,8 +29,6 @@ public class ClearCacheActivity extends BaseActivity {
 
     private void setToolbar() {
         setTitleText("清理缓存");
-        setLeftText("返回");
-        setLeftTextSize(12);
     }
 
     @OnClick({R.id.clearCache})
