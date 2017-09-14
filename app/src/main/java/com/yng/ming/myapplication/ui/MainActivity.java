@@ -17,7 +17,13 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @OnClick({R.id.horizontalCheckButton, R.id.replaceLanguage, R.id.imgGridView, R.id.calendar, R.id.clearCache, R.id.upShowAndEdit})
+    @OnClick({R.id.horizontalCheckButton,
+            R.id.replaceLanguage,
+            R.id.imgGridView,
+            R.id.calendar,
+            R.id.clearCache,
+            R.id.upShowAndEdit,
+            R.id.downMenu})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.horizontalCheckButton: // 横向滑动选择按钮
@@ -42,6 +48,9 @@ public class MainActivity extends BaseActivity {
                  * AndroidManifest -> android:theme -> 进入自己定义的主题中 -> 添加 <item name="android:windowIsTranslucent">true</item>
                  */
                 this.overridePendingTransition(R.anim.open_show_up, 0);
+                break;
+            case R.id.downMenu: // 下拉菜单
+                startActivity(new Intent(this, DownMenuActivity.class));
                 break;
         }
     }

@@ -32,7 +32,6 @@ import butterknife.ButterKnife;
  * 使用标题栏方法：
  * 1.在布局文件中引入标题栏:<include layout="@layout/base_tool_bar"/>
  * 2.使用setXXX方法可以对标题栏信息进行设置
- * 3.对于标题展示，你可以将设置标题数据的方法放在onResume生命周期之前；也可以自行调用setBaseToolbar()方法
  * <p>
  * 其他方法：
  * 1.收起软键盘：hideSoftInput();
@@ -143,14 +142,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         } catch (Exception e) {
             Logcat.i(TAG + e.toString());
         }
-    }
-
-    /**
-     * 隐藏标题栏右侧按钮
-     */
-    protected void hideRightMenu() {
-        RelativeLayout baseRightToolbar = (RelativeLayout) findViewById(R.id.baseRightToolbar);
-        baseRightToolbar.setVisibility(View.GONE);
     }
 
     //////////////////////////////   EditView点击空白区域隐藏输入法软键盘   //////////////////////////////
@@ -331,10 +322,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         return this;
     }
 
-    public BaseActivity setShowDividerView(boolean showDividerView) {
-        View baseDividerView = findViewById(R.id.baseDividerView);
-        baseDividerView.setVisibility(showDividerView ? View.VISIBLE : View.GONE);
-        return this;
+    /**
+     * 隐藏标题栏右侧按钮
+     */
+    protected void hideRightToolbar() {
+        RelativeLayout baseRightToolbar = (RelativeLayout) findViewById(R.id.baseRightToolbar);
+        baseRightToolbar.setVisibility(View.GONE);
     }
 
 }

@@ -19,7 +19,7 @@ public abstract class OnItemClickListener implements AdapterView.OnItemClickList
     /**
      * 防止出现多次点击
      */
-    abstract void onItemNoDoubleClick(AdapterView<?> parent, View view, int position, long id);
+    public abstract void onItemNoDoubleClick(AdapterView<?> parent, View view, int position, long id);
 
     /**
      * 重写onItemClick方法, 1 秒内点击只生效一次

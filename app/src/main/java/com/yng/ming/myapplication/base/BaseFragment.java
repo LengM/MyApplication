@@ -255,10 +255,4 @@ public abstract class BaseFragment extends Fragment {
         return this;
     }
 
-    public BaseFragment setShowDividerView(boolean showDividerView) {
-        View baseDividerView = view.findViewById(R.id.baseDividerView);
-        baseDividerView.setVisibility(showDividerView ? View.VISIBLE : View.GONE);
-        return this;
-    }
-
 }
