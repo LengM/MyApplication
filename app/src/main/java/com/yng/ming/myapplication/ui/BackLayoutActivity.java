@@ -26,8 +26,12 @@ public class BackLayoutActivity extends BaseActivity {
 
     /**
      * 使用手册：
-     * 1.在需要滑动的Activity上添加注解：@ParallaxBack
-     * 2.该注解的属性：
+     * 1.首先需要在Application中注册：
+     * registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
+     *
+     * 2.在需要滑动的Activity上添加注解：@ParallaxBack
+     *
+     * 3.该注解的属性：
      *
      * （1）edge：滑动方向
      *  ① LEFT：默认，从左向右滑动
