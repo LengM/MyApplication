@@ -31,17 +31,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.HorizontalCheckActivity"/>
-        <activity android:name=".ui.ReplaceLanguageActivity"/>
-        <activity android:name=".ui.MultiPreviewActivity"/>
-        <activity android:name=".ui.ImgGridViewActivity"/>
-        <activity android:name=".ui.CalendarActivity"/>
-        <activity android:name=".ui.ClearCacheActivity"/>
-        <activity android:name=".ui.EditDemoActivity"/>
-        <activity android:name=".ui.DownMenuActivity"/>
-        <activity android:name=".ui.BackLayoutActivity"/>
-        <activity android:name=".ui.BadgeViewActivity"/>
-        <activity android:name=".ui.GoodLikeActivity"/>
+        <activity android:name=".ui.demo.HorizontalCheckActivity"/>
+        <activity android:name=".ui.demo.ReplaceLanguageActivity"/>
+        <activity android:name=".ui.demo.MultiPreviewActivity"/>
+        <activity android:name=".ui.demo.ImgGridViewActivity"/>
+        <activity android:name=".ui.demo.CalendarActivity"/>
+        <activity android:name=".ui.demo.ClearCacheActivity"/>
+        <activity android:name=".ui.demo.EditDemoActivity"/>
+        <activity android:name=".ui.demo.DownMenuActivity"/>
+        <activity android:name=".ui.demo.BackLayoutActivity"/>
+        <activity android:name=".ui.demo.BadgeViewActivity"/>
+        <activity android:name=".ui.demo.GoodLikeActivity"/>
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.yng.ming.myapplication.ui;
+package com.yng.ming.myapplication.ui.demo;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

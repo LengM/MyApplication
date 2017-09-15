@@ -6,6 +6,16 @@ import android.view.View;
 
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
+import com.yng.ming.myapplication.ui.demo.BackLayoutActivity;
+import com.yng.ming.myapplication.ui.demo.BadgeViewActivity;
+import com.yng.ming.myapplication.ui.demo.CalendarActivity;
+import com.yng.ming.myapplication.ui.demo.ClearCacheActivity;
+import com.yng.ming.myapplication.ui.demo.DownMenuActivity;
+import com.yng.ming.myapplication.ui.demo.EditDemoActivity;
+import com.yng.ming.myapplication.ui.demo.GoodLikeActivity;
+import com.yng.ming.myapplication.ui.demo.HorizontalCheckActivity;
+import com.yng.ming.myapplication.ui.demo.ImgGridViewActivity;
+import com.yng.ming.myapplication.ui.demo.ReplaceLanguageActivity;
 
 import butterknife.OnClick;
 

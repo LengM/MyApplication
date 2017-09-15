@@ -1,4 +1,4 @@
-package com.yng.ming.myapplication.ui;
+package com.yng.ming.myapplication.ui.demo;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;

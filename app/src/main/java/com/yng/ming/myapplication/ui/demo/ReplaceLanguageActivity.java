@@ -1,4 +1,4 @@
-package com.yng.ming.myapplication.ui;
+package com.yng.ming.myapplication.ui.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
+import com.yng.ming.myapplication.ui.MainActivity;
 import com.yng.ming.myapplication.util.language.LocaleUtils;
 
 import butterknife.OnClick;
