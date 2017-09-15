@@ -41,6 +41,7 @@
         <activity android:name=".ui.DownMenuActivity"/>
         <activity android:name=".ui.BackLayoutActivity"/>
         <activity android:name=".ui.BadgeViewActivity"/>
+        <activity android:name=".ui.GoodLikeActivity"/>
 
     </application>
 

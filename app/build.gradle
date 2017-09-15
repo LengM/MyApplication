@@ -63,4 +63,7 @@ dependencies {
 
     // 信息小红点(可自定义外观) https://github.com/qstumn/BadgeView
     compile 'q.rorbin:badgeview:1.1.2'
+
+    // 点赞动态效果 https://github.com/venshine/GoodView
+    compile 'com.wx.goodview:goodview:1.0.0'
 }

@@ -20,15 +20,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @OnClick({R.id.horizontalCheckButton,
-            R.id.replaceLanguage,
-            R.id.imgGridView,
-            R.id.calendar,
-            R.id.clearCache,
-            R.id.upShowAndEdit,
-            R.id.downMenu,
-            R.id.backLayout,
-            R.id.badgeView})
+    @OnClick({R.id.horizontalCheckButton, R.id.replaceLanguage, R.id.imgGridView, R.id.calendar,
+            R.id.clearCache, R.id.upShowAndEdit, R.id.downMenu, R.id.backLayout, R.id.badgeView,
+            R.id.likeView})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.horizontalCheckButton: // 横向滑动选择按钮
@@ -62,6 +56,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.badgeView: // 消息小红点
                 startActivity(new Intent(this, BadgeViewActivity.class));
+                break;
+            case R.id.likeView: // 点赞
+                startActivity(new Intent(this, GoodLikeActivity.class));
                 break;
         }
     }
