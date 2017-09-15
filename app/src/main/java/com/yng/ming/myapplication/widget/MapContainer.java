@@ -1,4 +1,4 @@
-package com.yng.ming.myapplication.view;
+package com.yng.ming.myapplication.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

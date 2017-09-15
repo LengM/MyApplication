@@ -15,7 +15,7 @@ import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
 import com.yng.ming.myapplication.base.OnClickListener;
 import com.yng.ming.myapplication.util.date.DateUtil;
-import com.yng.ming.myapplication.view.BottomDialog;
+import com.yng.ming.myapplication.widget.BottomDialog;
 
 import butterknife.Bind;
 import butterknife.OnClick;

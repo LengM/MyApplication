@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.adapter.ImageAdapter;
 import com.yng.ming.myapplication.base.BaseActivity;
-import com.yng.ming.myapplication.view.MyGridView;
+import com.yng.ming.myapplication.widget.MyGridView;
 
 import java.util.ArrayList;
 
