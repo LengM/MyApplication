@@ -60,4 +60,7 @@ dependencies {
 
     // 仿微信的滑动返回Activity（视差滑动） https://github.com/anzewei/ParallaxBackLayout
     compile 'com.github.anzewei:parallaxbacklayout:1.1.7'
+
+    // 信息小红点(可自定义外观) https://github.com/qstumn/BadgeView
+    compile 'q.rorbin:badgeview:1.1.2'
 }

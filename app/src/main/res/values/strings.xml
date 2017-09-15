@@ -16,5 +16,6 @@
     <string name="downMenu">下拉菜单</string>
     <string name="backLayout">滑动返回</string>
     <string name="backPoint">操作提示：该滑动返回需要将手指从屏幕外向屏幕里滑动</string>
+    <string name="badgeView">消息小红点</string>
 
 </resources>

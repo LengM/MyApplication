@@ -40,6 +40,7 @@
         <activity android:name=".ui.EditDemoActivity"/>
         <activity android:name=".ui.DownMenuActivity"/>
         <activity android:name=".ui.BackLayoutActivity"/>
+        <activity android:name=".ui.BadgeViewActivity"/>
 
     </application>
 

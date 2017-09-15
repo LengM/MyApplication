@@ -27,7 +27,8 @@ public class MainActivity extends BaseActivity {
             R.id.clearCache,
             R.id.upShowAndEdit,
             R.id.downMenu,
-            R.id.backLayout})
+            R.id.backLayout,
+            R.id.badgeView})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.horizontalCheckButton: // 横向滑动选择按钮
@@ -58,6 +59,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.backLayout: // 滑动返回
                 startActivity(new Intent(this, BackLayoutActivity.class));
+                break;
+            case R.id.badgeView: // 消息小红点
+                startActivity(new Intent(this, BadgeViewActivity.class));
                 break;
         }
     }
