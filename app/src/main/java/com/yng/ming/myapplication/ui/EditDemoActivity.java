@@ -14,6 +14,7 @@ import butterknife.OnClick;
 
 /**
  * 带提示输入框
+ * https://github.com/rey5137/material
  */
 public class EditDemoActivity extends BaseActivity {
 

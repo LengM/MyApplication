@@ -22,7 +22,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(path:':calendarview')
+    compile project(path: ':calendarview')
 
     // Android兼容包
     compile 'com.android.support:appcompat-v7:25.3.1'
@@ -57,4 +57,7 @@ dependencies {
 
     // 一个开源的Android库,这里我们使用到输入框 https://github.com/rey5137/material
     compile 'com.github.rey5137:material:1.2.4'
+
+    // 仿微信的滑动返回Activity（视差滑动） https://github.com/anzewei/ParallaxBackLayout
+    compile 'com.github.anzewei:parallaxbacklayout:1.1.7'
 }

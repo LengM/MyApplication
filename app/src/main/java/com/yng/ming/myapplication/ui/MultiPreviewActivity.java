@@ -22,6 +22,7 @@ import me.kareluo.intensify.image.IntensifyImageView;
 
 /**
  * 多图预览
+ * https://github.com/kareluo/IntensifyImageView
  */
 public class MultiPreviewActivity extends BaseActivity {
 

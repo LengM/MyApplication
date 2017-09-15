@@ -22,6 +22,8 @@ import butterknife.OnClick;
 
 /**
  * 日历
+ * https://github.com/Othershe/CalendarView
+ * 这里对其进行了一部分修改
  */
 public class CalendarActivity extends BaseActivity {
 

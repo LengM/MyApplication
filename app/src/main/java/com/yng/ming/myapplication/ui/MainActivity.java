@@ -9,6 +9,9 @@ import com.yng.ming.myapplication.base.BaseActivity;
 
 import butterknife.OnClick;
 
+/**
+ * 主页面导航
+ */
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -23,7 +26,8 @@ public class MainActivity extends BaseActivity {
             R.id.calendar,
             R.id.clearCache,
             R.id.upShowAndEdit,
-            R.id.downMenu})
+            R.id.downMenu,
+            R.id.backLayout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.horizontalCheckButton: // 横向滑动选择按钮
@@ -51,6 +55,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.downMenu: // 下拉菜单
                 startActivity(new Intent(this, DownMenuActivity.class));
+                break;
+            case R.id.backLayout: // 滑动返回
+                startActivity(new Intent(this, BackLayoutActivity.class));
                 break;
         }
     }

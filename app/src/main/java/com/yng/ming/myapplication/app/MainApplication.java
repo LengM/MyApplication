@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.StrictMode;
 
+import com.github.anzewei.parallaxbacklayout.ParallaxHelper;
 import com.yng.ming.myapplication.util.adaptation.ScreenAdaptation;
 import com.yng.ming.myapplication.util.language.LocaleUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -50,6 +51,8 @@ public class MainApplication extends Application {
         Locale _UserLocale = LocaleUtils.getUserLocale(this);
         LocaleUtils.updateLocale(this, _UserLocale);
 
+        // 注册滑动返回
+        registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
     }
 
     @Override

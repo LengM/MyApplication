@@ -39,6 +39,7 @@
         <activity android:name=".ui.ClearCacheActivity"/>
         <activity android:name=".ui.EditDemoActivity"/>
         <activity android:name=".ui.DownMenuActivity"/>
+        <activity android:name=".ui.BackLayoutActivity"/>
 
     </application>
 
