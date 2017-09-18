@@ -6,4 +6,5 @@
 
     <!--背景颜色-->
     <color name="background">#f4f4f4</color>
+    <color name="blue">#039BE5</color>
 </resources>

@@ -10,7 +10,7 @@ import com.yng.ming.myapplication.base.BaseActivity;
  * 滑动返回
  * https://github.com/anzewei/ParallaxBackLayout
  */
-@ParallaxBack(edge = ParallaxBack.Edge.LEFT, edgeMode = ParallaxBack.EdgeMode.FULLSCREEN)
+@ParallaxBack(edge = ParallaxBack.Edge.LEFT)
 public class BackLayoutActivity extends BaseActivity {
 
     @Override

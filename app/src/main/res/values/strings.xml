@@ -15,7 +15,7 @@
     <string name="phoneError">手机号码格式错误</string>
     <string name="downMenu">下拉菜单</string>
     <string name="backLayout">滑动返回</string>
-    <string name="backPoint">向右滑动屏幕返回主页面</string>
+    <string name="backPoint">边缘滑动</string>
     <string name="badgeView">消息小红点</string>
     <string name="likeView">点赞</string>
 
