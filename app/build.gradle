@@ -66,4 +66,11 @@ dependencies {
 
     // 点赞动态效果 https://github.com/venshine/GoodView
     compile 'com.wx.goodview:goodview:1.0.0'
+
+    // 最好用的下拉刷新上拉加载框架 https://github.com/scwang90/SmartRefreshLayout
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
+
+    // “万能”Adapter https://github.com/byteam/SuperAdapter
+    compile 'org.byteam.superadapter:superadapter:3.6.7'
 }

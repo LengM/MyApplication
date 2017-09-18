@@ -2,10 +2,13 @@ package com.yng.ming.myapplication.ui.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.adapter.ImageAdapter;
 import com.yng.ming.myapplication.base.BaseActivity;
+import com.yng.ming.myapplication.base.OnItemClickListener;
 import com.yng.ming.myapplication.widget.MyGridView;
 
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ import butterknife.Bind;
 /**
  * 图片列表
  */
-public class ImgGridViewActivity extends BaseActivity implements ImageAdapter.ImgClickListener {
+public class ImgGridViewActivity extends BaseActivity {
 
     @Bind(R.id.imgGridView)
     MyGridView imgGridView;
@@ -30,24 +33,26 @@ public class ImgGridViewActivity extends BaseActivity implements ImageAdapter.Im
         imgList.clear();
         setToolbar();
         setDate();
-        adapter = new ImageAdapter(this, imgList);
+        adapter = new ImageAdapter(this, imgList, R.layout.grid_view_image_item);
         imgGridView.setAdapter(adapter);
-        adapter.setListener(this);
+        imgGridView.setOnItemClickListener(onItemClickListener);
     }
 
     private void setToolbar() {
         setTitleText("图片列表");
     }
 
-    @Override
-    public void imgClick(int position) {
-        Intent intent = new Intent(this, MultiPreviewActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("imgList", imgList);
-        bundle.putInt("index", position);
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
+    OnItemClickListener onItemClickListener = new OnItemClickListener() {
+        @Override
+        public void onItemNoDoubleClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(ImgGridViewActivity.this, MultiPreviewActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("imgList", imgList);
+            bundle.putInt("index", position);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    };
 
     private void setDate() {
         imgList.add("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=720891101,4253860064&fm=27&gp=0.jpg");
