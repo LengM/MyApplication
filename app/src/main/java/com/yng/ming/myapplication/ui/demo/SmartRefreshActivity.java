@@ -7,6 +7,8 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -20,7 +22,6 @@ import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.adapter.SmartRefreshAdapter;
 import com.yng.ming.myapplication.base.BaseActivity;
@@ -82,7 +83,7 @@ public class SmartRefreshActivity extends BaseActivity {
                         smartRefresh.finishRefresh();
                         smartRefresh.setLoadmoreFinished(false);
                     }
-                }, 2000);
+                }, 3000);
             }
         });
         smartRefresh.setOnLoadmoreListener(new OnLoadmoreListener() {
@@ -117,7 +118,7 @@ public class SmartRefreshActivity extends BaseActivity {
             mProgressView = new ImageView(context);
             mProgressView.setImageResource(R.drawable.my_loading);
             progressDrawable = (AnimationDrawable) mProgressView.getDrawable();
-            addView(mProgressView, DensityUtil.dp2px(100), DensityUtil.dp2px(100));
+            addView(mProgressView, 500, 300);
         }
 
         /**
