@@ -42,6 +42,7 @@
         <activity android:name=".ui.demo.BackLayoutActivity"/>
         <activity android:name=".ui.demo.BadgeViewActivity"/>
         <activity android:name=".ui.demo.GoodLikeActivity"/>
+        <activity android:name=".ui.demo.SmartRefreshActivity"/>
 
     </application>
 

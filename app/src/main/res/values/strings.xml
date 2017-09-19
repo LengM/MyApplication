@@ -18,5 +18,6 @@
     <string name="backPoint">边缘滑动</string>
     <string name="badgeView">消息小红点</string>
     <string name="likeView">点赞</string>
+    <string name="refreshView">刷新加载</string>
 
 </resources>
