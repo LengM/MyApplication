@@ -1,11 +1,25 @@
 package com.yng.ming.myapplication.ui;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ListView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yng.ming.myapplication.R;
+import com.yng.ming.myapplication.adapter.IndexListAdapter;
 import com.yng.ming.myapplication.base.BaseActivity;
+import com.yng.ming.myapplication.base.OnItemClickListener;
+import com.yng.ming.myapplication.database.IndexDatabase;
+import com.yng.ming.myapplication.model.IndexBean;
 import com.yng.ming.myapplication.ui.demo.BackLayoutActivity;
 import com.yng.ming.myapplication.ui.demo.BadgeViewActivity;
 import com.yng.ming.myapplication.ui.demo.CalendarActivity;
@@ -17,64 +31,180 @@ import com.yng.ming.myapplication.ui.demo.HorizontalCheckActivity;
 import com.yng.ming.myapplication.ui.demo.ImgGridViewActivity;
 import com.yng.ming.myapplication.ui.demo.ReplaceLanguageActivity;
 import com.yng.ming.myapplication.ui.demo.SmartRefreshActivity;
+import com.yng.ming.myapplication.util.json.LocalJsonUtil;
 
-import butterknife.OnClick;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
 
 /**
  * 主页面导航
  */
 public class MainActivity extends BaseActivity {
 
+    @Bind(R.id.searchEdit)
+    EditText searchEdit;
+    @Bind(R.id.indexListView)
+    ListView indexListView;
+
+    IndexListAdapter adapter;
+    List<IndexBean> beanList = new ArrayList<>();
+
+    private IndexDatabase database; // 数据库
+    private Cursor indexCursor; // 操作数据库的光标
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init();
+        searchListener();
     }
 
-    @OnClick({R.id.horizontalCheckButton, R.id.replaceLanguage, R.id.imgGridView, R.id.calendar,
-            R.id.clearCache, R.id.upShowAndEdit, R.id.downMenu, R.id.backLayout, R.id.badgeView,
-            R.id.likeView, R.id.refreshView})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.horizontalCheckButton: // 横向滑动选择按钮
-                startActivity(new Intent(this, HorizontalCheckActivity.class));
-                break;
-            case R.id.replaceLanguage: // 更换语言
-                startActivity(new Intent(this, ReplaceLanguageActivity.class));
-                break;
-            case R.id.imgGridView: // 图片列表/多图预览
-                startActivity(new Intent(this, ImgGridViewActivity.class));
-                break;
-            case R.id.calendar: // 日历
-                startActivity(new Intent(this, CalendarActivity.class));
-                break;
-            case R.id.clearCache: // 清理缓存
-                startActivity(new Intent(this, ClearCacheActivity.class));
-                break;
-            case R.id.upShowAndEdit: // Activity开启动画(从下向上)/带提示输入框
-                startActivity(new Intent(this, EditDemoActivity.class));
-                /**
-                 * 这里使用动画若出现黑色背景，我们只需将应用的主题的Window设置为透明即可
-                 * AndroidManifest -> android:theme -> 进入自己定义的主题中 -> 添加 <item name="android:windowIsTranslucent">true</item>
-                 */
-                this.overridePendingTransition(R.anim.open_show_up, 0);
-                break;
-            case R.id.downMenu: // 下拉菜单
-                startActivity(new Intent(this, DownMenuActivity.class));
-                break;
-            case R.id.backLayout: // 滑动返回
-                startActivity(new Intent(this, BackLayoutActivity.class));
-                break;
-            case R.id.badgeView: // 消息小红点
-                startActivity(new Intent(this, BadgeViewActivity.class));
-                break;
-            case R.id.likeView: // 点赞
-                startActivity(new Intent(this, GoodLikeActivity.class));
-                break;
-            case R.id.refreshView:
-                startActivity(new Intent(this, SmartRefreshActivity.class));
-                break;
+    /**
+     * 初始化:初始化数据库、读取json、设置adapter
+     */
+    private void init() {
+        // 初始化数据库
+        database = new IndexDatabase(this);
+        // 清除数据库内容
+        database.clear();
+        // 解析json文件
+        String json = LocalJsonUtil.getJson(this, "index.json");
+        // 解析json字符串
+        beanList = new Gson().fromJson(json, new TypeToken<List<IndexBean>>() {
+        }.getType());
+        // 存入数据库
+        for (IndexBean bean : beanList) {
+            database.insert(bean.getId(), bean.getMessage());
         }
+        // 适配器
+        adapter = new IndexListAdapter(this, beanList, R.layout.main_index_item);
+        indexListView.setAdapter(adapter);
+        // item点击事件
+        indexListView.setOnItemClickListener(onItemClickListener);
+
+        searchEdit.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+            }
+        });
+
+    }
+
+    OnItemClickListener onItemClickListener = new OnItemClickListener() {
+        @Override
+        public void onItemNoDoubleClick(AdapterView<?> parent, View view, int position, long id) {
+            switch (beanList.get(position).getId()) {
+                case "0": // 横向滑动选择按钮
+                    startActivity(new Intent(MainActivity.this, HorizontalCheckActivity.class));
+                    break;
+                case "1": // 更换语言
+                    startActivity(new Intent(MainActivity.this, ReplaceLanguageActivity.class));
+                    break;
+                case "2": // 图片列表/多图预览
+                    startActivity(new Intent(MainActivity.this, ImgGridViewActivity.class));
+                    break;
+                case "3": // 日历
+                    startActivity(new Intent(MainActivity.this, CalendarActivity.class));
+                    break;
+                case "4": // 清理缓存
+                    startActivity(new Intent(MainActivity.this, ClearCacheActivity.class));
+                    break;
+                case "5": // Activity开启动画(从下向上)/带提示输入框
+                    startActivity(new Intent(MainActivity.this, EditDemoActivity.class));
+                    MainActivity.this.overridePendingTransition(R.anim.open_show_up, 0);
+                    break;
+                case "6": // 下拉菜单
+                    startActivity(new Intent(MainActivity.this, DownMenuActivity.class));
+                    break;
+                case "7": // 滑动返回
+                    startActivity(new Intent(MainActivity.this, BackLayoutActivity.class));
+                    break;
+                case "8": // 消息小红点
+                    startActivity(new Intent(MainActivity.this, BadgeViewActivity.class));
+                    break;
+                case "9": // 点赞
+                    startActivity(new Intent(MainActivity.this, GoodLikeActivity.class));
+                    break;
+                case "10": // 刷新加载
+                    startActivity(new Intent(MainActivity.this, SmartRefreshActivity.class));
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 搜索框相关监听
+     */
+    private void searchListener() {
+        // 搜索框焦点监听
+        searchEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    searchEdit.setGravity(Gravity.LEFT);
+                    searchEdit.setPadding(15, 15, 15, 15);
+                } else {
+                    searchEdit.setGravity(Gravity.CENTER);
+                }
+            }
+        });
+        // 搜索框输入监听
+        searchEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().trim().isEmpty()) { // 输入内容为空
+                    if (adapter != null) {
+                        adapter.clear();
+                    }
+                    if (!beanList.isEmpty()) {
+                        beanList.clear();
+                    }
+                    indexCursor = database.selectAll();
+                    if (indexCursor.getCount() > 0) {
+                        indexCursor.moveToFirst();
+                        for (int i = 0; i < indexCursor.getCount(); i++) {
+                            IndexBean indexBean = new IndexBean();
+                            indexBean.setId(indexCursor.getString(0));
+                            indexBean.setMessage(indexCursor.getString(1));
+                            beanList.add(indexBean);
+                            indexCursor.moveToNext();
+                        }
+                    }
+                } else { // 输入内容不为空
+                    if (adapter != null) {
+                        adapter.clear();
+                    }
+                    if (!beanList.isEmpty()) {
+                        beanList.clear();
+                    }
+                    indexCursor = database.searchFuzzy(s.toString());
+                    if (indexCursor.getCount() > 0) {
+                        indexCursor.moveToFirst();
+                        for (int i = 0; i < indexCursor.getCount(); i++) {
+                            IndexBean indexBean = new IndexBean();
+                            indexBean.setId(indexCursor.getString(0));
+                            indexBean.setMessage(indexCursor.getString(1));
+                            beanList.add(indexBean);
+                            indexCursor.moveToNext();
+                        }
+                    }
+                }
+            }
+        });
     }
 
 }

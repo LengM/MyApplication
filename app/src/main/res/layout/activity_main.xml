@@ -3,103 +3,133 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="40dp"
+        android:background="#9b96a3"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="8dp">
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/searchEdit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:background="@drawable/index_search_background"
+            android:gravity="center"
+            android:hint="搜索"
+            android:textSize="12sp"
+            />
 
-            <Button
-                android:id="@+id/horizontalCheckButton"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/horizontalCheckButton"/>
+    </RelativeLayout>
 
-            <Button
-                android:id="@+id/replaceLanguage"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/replaceLanguage"/>
+    <ListView
+        android:id="@+id/indexListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        />
 
-            <Button
-                android:id="@+id/imgGridView"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/imgGridView"/>
 
-            <Button
-                android:id="@+id/calendar"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/calendar"/>
+    <!-- <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/clearCache"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/clearCache"/>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             android:padding="16dp">
 
-            <Button
-                android:id="@+id/upShowAndEdit"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/upShowAndEdit"
-                android:textAllCaps="false"/>
+             <Button
+                 android:id="@+id/horizontalCheckButton"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/horizontalCheckButton"/>
 
-            <Button
-                android:id="@+id/downMenu"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/downMenu"
-                android:textAllCaps="false"/>
+             <Button
+                 android:id="@+id/replaceLanguage"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/replaceLanguage"/>
 
-            <Button
-                android:id="@+id/backLayout"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/backLayout"
-                android:textAllCaps="false"/>
+             <Button
+                 android:id="@+id/imgGridView"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/imgGridView"/>
 
-            <Button
-                android:id="@+id/badgeView"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/badgeView"
-                android:textAllCaps="false"/>
+             <Button
+                 android:id="@+id/calendar"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/calendar"/>
 
-            <Button
-                android:id="@+id/likeView"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/likeView"
-                android:textAllCaps="false"/>
+             <Button
+                 android:id="@+id/clearCache"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/clearCache"/>
 
-            <Button
-                android:id="@+id/refreshView"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/refreshView"
-                android:textAllCaps="false"/>
+             <Button
+                 android:id="@+id/upShowAndEdit"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/upShowAndEdit"
+                 android:textAllCaps="false"/>
 
-        </LinearLayout>
+             <Button
+                 android:id="@+id/downMenu"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/downMenu"
+                 android:textAllCaps="false"/>
 
-    </ScrollView>
+             <Button
+                 android:id="@+id/backLayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/backLayout"
+                 android:textAllCaps="false"/>
+
+             <Button
+                 android:id="@+id/badgeView"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/badgeView"
+                 android:textAllCaps="false"/>
+
+             <Button
+                 android:id="@+id/likeView"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/likeView"
+                 android:textAllCaps="false"/>
+
+             <Button
+                 android:id="@+id/refreshView"
+                 android:layout_width="match_parent"
+                 android:layout_height="44dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="@string/refreshView"
+                 android:textAllCaps="false"/>
+
+         </LinearLayout>
+
+     </ScrollView>-->
+
 
 </LinearLayout>
