@@ -5,15 +5,16 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rw.keyboardlistener.KeyboardUtils;
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.adapter.IndexListAdapter;
 import com.yng.ming.myapplication.base.BaseActivity;
@@ -85,13 +86,20 @@ public class MainActivity extends BaseActivity {
         // item点击事件
         indexListView.setOnItemClickListener(onItemClickListener);
 
-        searchEdit.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        KeyboardUtils.addKeyboardToggleListener(this, new KeyboardUtils.SoftKeyboardToggleListener() {
             @Override
-            public void onGlobalLayout() {
-
+            public void onToggleSoftKeyboard(boolean isVisible) {
+                Log.d("keyboard", "keyboard visible: " + isVisible);
+                if (!isVisible) {
+                    searchEdit.setGravity(Gravity.CENTER);
+                    searchEdit.setCursorVisible(false);
+                } else {
+                    searchEdit.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+                    searchEdit.setPadding(15, 0, 0, 0);
+                    searchEdit.setCursorVisible(true);
+                }
             }
         });
-
     }
 
     OnItemClickListener onItemClickListener = new OnItemClickListener() {
@@ -140,18 +148,6 @@ public class MainActivity extends BaseActivity {
      * 搜索框相关监听
      */
     private void searchListener() {
-        // 搜索框焦点监听
-        searchEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    searchEdit.setGravity(Gravity.LEFT);
-                    searchEdit.setPadding(15, 15, 15, 15);
-                } else {
-                    searchEdit.setGravity(Gravity.CENTER);
-                }
-            }
-        });
         // 搜索框输入监听
         searchEdit.addTextChangedListener(new TextWatcher() {
             @Override
