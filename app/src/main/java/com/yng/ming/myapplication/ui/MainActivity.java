@@ -25,6 +25,7 @@ import com.yng.ming.myapplication.ui.demo.BadgeViewActivity;
 import com.yng.ming.myapplication.ui.demo.CalendarActivity;
 import com.yng.ming.myapplication.ui.demo.ClearCacheActivity;
 import com.yng.ming.myapplication.ui.demo.DownMenuActivity;
+import com.yng.ming.myapplication.ui.demo.EasySwipeActivity;
 import com.yng.ming.myapplication.ui.demo.EditDemoActivity;
 import com.yng.ming.myapplication.ui.demo.GoodLikeActivity;
 import com.yng.ming.myapplication.ui.demo.HorizontalCheckActivity;
@@ -139,6 +140,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case "10": // 刷新加载
                     startActivity(new Intent(MainActivity.this, SmartRefreshActivity.class));
+                    break;
+                case "11": // 简单的侧滑功能
+                    startActivity(new Intent(MainActivity.this, EasySwipeActivity.class));
                     break;
             }
         }

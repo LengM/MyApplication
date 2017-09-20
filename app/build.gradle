@@ -25,8 +25,6 @@ dependencies {
     // 日历控件 源地址：https://github.com/Othershe/CalendarView
     compile project(path: ':calendarview')
 
-//    compile project(path: ':keyboard-listener')
-
     // Android兼容包
     compile 'com.android.support:appcompat-v7:25.3.1'
 
@@ -76,4 +74,10 @@ dependencies {
 
     // “万能”Adapter https://github.com/byteam/SuperAdapter
     compile 'org.byteam.superadapter:superadapter:3.6.7'
+
+    // 强大的RecyclerAdapter框架 https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
+
+    // Android开发工具 https://github.com/Blankj/AndroidUtilCode
+    compile 'com.blankj:utilcode:1.9.0'
 }

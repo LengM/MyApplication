@@ -41,6 +41,10 @@
   },
   {
     "id": "10",
-    "message": "刷新加载"
+    "message": "刷新加载(ListView)"
+  },
+  {
+    "id": "11",
+    "message": "简单的侧滑功能(RecyclerView)"
   }
 ]

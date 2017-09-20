@@ -43,6 +43,7 @@
         <activity android:name=".ui.demo.BadgeViewActivity"/>
         <activity android:name=".ui.demo.GoodLikeActivity"/>
         <activity android:name=".ui.demo.SmartRefreshActivity"/>
+        <activity android:name=".ui.demo.EasySwipeActivity"/>
 
     </application>
 
