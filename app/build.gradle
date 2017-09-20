@@ -25,7 +25,7 @@ dependencies {
     // 日历控件 源地址：https://github.com/Othershe/CalendarView
     compile project(path: ':calendarview')
 
-    compile project(path: ':keyboard-listener')
+//    compile project(path: ':keyboard-listener')
 
     // Android兼容包
     compile 'com.android.support:appcompat-v7:25.3.1'

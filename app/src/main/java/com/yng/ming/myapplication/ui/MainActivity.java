@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.rw.keyboardlistener.KeyboardUtils;
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.adapter.IndexListAdapter;
 import com.yng.ming.myapplication.base.BaseActivity;
@@ -33,6 +32,7 @@ import com.yng.ming.myapplication.ui.demo.ImgGridViewActivity;
 import com.yng.ming.myapplication.ui.demo.ReplaceLanguageActivity;
 import com.yng.ming.myapplication.ui.demo.SmartRefreshActivity;
 import com.yng.ming.myapplication.util.json.LocalJsonUtil;
+import com.yng.ming.myapplication.util.keyboard.KeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
