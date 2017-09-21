@@ -20,6 +20,7 @@ import com.yng.ming.myapplication.base.BaseActivity;
 import com.yng.ming.myapplication.base.OnItemClickListener;
 import com.yng.ming.myapplication.database.IndexDatabase;
 import com.yng.ming.myapplication.model.IndexBean;
+import com.yng.ming.myapplication.ui.demo.BRVAHSwipeActivity;
 import com.yng.ming.myapplication.ui.demo.BackLayoutActivity;
 import com.yng.ming.myapplication.ui.demo.BadgeViewActivity;
 import com.yng.ming.myapplication.ui.demo.CalendarActivity;
@@ -143,6 +144,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case "11": // 简单的侧滑功能
                     startActivity(new Intent(MainActivity.this, EasySwipeActivity.class));
+                    break;
+                case "12": //滑动删除/item拖拽
+                    startActivity(new Intent(MainActivity.this, BRVAHSwipeActivity.class));
                     break;
             }
         }

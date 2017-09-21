@@ -2,23 +2,21 @@ package com.yng.ming.myapplication.ui.demo;
 
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
+import com.chad.library.adapter.base.listener.OnItemDragListener;
 import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
-import com.yng.ming.myapplication.base.OnClickListener;
-import com.yng.ming.myapplication.widget.swipe.EasySwipeMenuLayout;
+import com.yng.ming.myapplication.util.log.Logcat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +24,10 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * 简单的item侧滑
- * https://github.com/anzaizai/EasySwipeMenuLayout
+ * 滑动删除/item拖拽
+ * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
  */
-public class EasySwipeActivity extends BaseActivity {
+public class BRVAHSwipeActivity extends BaseActivity {
 
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -48,13 +46,11 @@ public class EasySwipeActivity extends BaseActivity {
     }
 
     private void setToolbar() {
-        setTitleText("简单侧滑按钮");
+        setTitleText("滑动删除/item拖拽");
     }
 
     private void init() {
-        adapter = new EasySwipeAdapter(R.layout.easy_swipe_item, null);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        setDate();
         easySwipeRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -68,63 +64,85 @@ public class EasySwipeActivity extends BaseActivity {
                 }, 2000);
             }
         });
-        setDate();
+
+        ItemDragAndSwipeCallback callback = new ItemDragAndSwipeCallback(adapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        adapter.enableDragItem(itemTouchHelper, R.id.easyContentLayout, true);
+        adapter.setOnItemDragListener(onItemDragListener);
+
+        adapter.enableSwipeItem();
+        adapter.setOnItemSwipeListener(onItemSwipeListener);
     }
 
     private void setDate() {
         for (int i = 0; i < 20; i++) {
             list.add("item " + i);
         }
-        adapter.addData(list);
-        adapter.notifyDataSetChanged();
+        adapter = new EasySwipeAdapter(R.layout.easy_swipe_item, list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 
-    public class EasySwipeAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+    /**
+     * 这里需要使用BaseItemDraggableAdapter
+     */
+    public class EasySwipeAdapter extends BaseItemDraggableAdapter<String, BaseViewHolder> {
 
-        public EasySwipeAdapter(@LayoutRes int layoutResId, @Nullable List<String> data) {
+        public EasySwipeAdapter(int layoutResId, List<String> data) {
             super(layoutResId, data);
         }
 
         @Override
-        protected void convert(final BaseViewHolder helper, String item) {
+        protected void convert(BaseViewHolder helper, String item) {
             helper.setText(R.id.easyContent, item);
-            helper.getView(R.id.easyContentLayout).setOnClickListener(new OnClickListener() {
-                @Override
-                public void onNoDoubleClick(View v) {
-                    EasySwipeMenuLayout easySwipeMenuLayout = helper.getView(R.id.easySwipeMenuLayout);
-                    easySwipeMenuLayout.resetStatus();
-                }
-            });
-            helper.getView(R.id.deleteText).setOnClickListener(new OnClickListener() {
-                @Override
-                public void onNoDoubleClick(View v) {
-                    Toast.makeText(EasySwipeActivity.this, "你点击了删除按钮", Toast.LENGTH_SHORT).show();
-                    EasySwipeMenuLayout easySwipeMenuLayout = helper.getView(R.id.easySwipeMenuLayout);
-                    easySwipeMenuLayout.resetStatus();
-                }
-            });
         }
+
     }
 
+    /**
+     * 侧滑功能
+     */
     OnItemSwipeListener onItemSwipeListener = new OnItemSwipeListener() {
         @Override
         public void onItemSwipeStart(RecyclerView.ViewHolder viewHolder, int pos) {
-
+            Logcat.i("--------- onItemSwipeStart ---------");
         }
 
         @Override
         public void clearView(RecyclerView.ViewHolder viewHolder, int pos) {
-
+            Logcat.i("--------- clearItemSwipe ---------");
         }
 
         @Override
         public void onItemSwiped(RecyclerView.ViewHolder viewHolder, int pos) {
-
+            Logcat.i("--------- onItemSwiped ---------");
         }
 
         @Override
         public void onItemSwipeMoving(Canvas canvas, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive) {
+            Logcat.i("--------- onItemSwipeMoving ---------");
+        }
+    };
 
+    /**
+     * 拖拽
+     */
+    OnItemDragListener onItemDragListener = new OnItemDragListener() {
+        @Override
+        public void onItemDragStart(RecyclerView.ViewHolder viewHolder, int pos) {
+            Logcat.i("--------- onItemDragStart ---------");
+        }
+
+        @Override
+        public void onItemDragMoving(RecyclerView.ViewHolder source, int from, RecyclerView.ViewHolder target, int to) {
+            Logcat.i("--------- onItemDragMoving ---------");
+        }
+
+        @Override
+        public void onItemDragEnd(RecyclerView.ViewHolder viewHolder, int pos) {
+            Logcat.i("--------- onItemDragEnd ---------");
         }
     };
 

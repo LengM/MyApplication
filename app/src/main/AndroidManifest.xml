@@ -44,6 +44,8 @@
         <activity android:name=".ui.demo.GoodLikeActivity"/>
         <activity android:name=".ui.demo.SmartRefreshActivity"/>
         <activity android:name=".ui.demo.EasySwipeActivity"/>
+        <activity android:name=".ui.demo.BRVAHSwipeActivity"/>
+
 
     </application>
 

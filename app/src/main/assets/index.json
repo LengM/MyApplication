@@ -46,5 +46,9 @@
   {
     "id": "11",
     "message": "简单的侧滑功能(RecyclerView)"
+  },
+  {
+    "id": "12",
+    "message": "滑动删除/item拖拽"
   }
 ]
