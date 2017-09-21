@@ -13,4 +13,12 @@
         <attr name="fraction" format="float"/>
     </declare-styleable>
 
+    <!-- 开关按钮 -->
+    <declare-styleable name="SwitchView">
+        <attr name="hasShadow" format="boolean"/>
+        <attr name="primaryColor" format="color"/>
+        <attr name="primaryColorDark" format="color"/>
+        <attr name="isOpened" format="boolean"/>
+    </declare-styleable>
+
 </resources>

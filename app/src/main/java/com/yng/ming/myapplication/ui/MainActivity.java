@@ -33,6 +33,7 @@ import com.yng.ming.myapplication.ui.demo.HorizontalCheckActivity;
 import com.yng.ming.myapplication.ui.demo.ImgGridViewActivity;
 import com.yng.ming.myapplication.ui.demo.ReplaceLanguageActivity;
 import com.yng.ming.myapplication.ui.demo.SmartRefreshActivity;
+import com.yng.ming.myapplication.ui.demo.SwitchViewActivity;
 import com.yng.ming.myapplication.util.json.LocalJsonUtil;
 import com.yng.ming.myapplication.util.keyboard.KeyboardUtils;
 
@@ -146,8 +147,11 @@ public class MainActivity extends BaseActivity {
                 case "11": // 简单的侧滑功能
                     startActivity(new Intent(MainActivity.this, EasySwipeActivity.class));
                     break;
-                case "12": //滑动删除/item拖拽
+                case "12": // 滑动删除/item拖拽
                     startActivity(new Intent(MainActivity.this, BRVAHSwipeActivity.class));
+                    break;
+                case "13": // 开关按钮
+                    startActivity(new Intent(MainActivity.this, SwitchViewActivity.class));
                     break;
             }
         }

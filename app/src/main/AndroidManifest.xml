@@ -45,7 +45,7 @@
         <activity android:name=".ui.demo.SmartRefreshActivity"/>
         <activity android:name=".ui.demo.EasySwipeActivity"/>
         <activity android:name=".ui.demo.BRVAHSwipeActivity"/>
-
+        <activity android:name=".ui.demo.SwitchViewActivity"/>
 
     </application>
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <include layout="@layout/base_tool_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/switchAntiShake"
+            android:text="下面的按钮是否开启防抖"/>
+
+        <com.yng.ming.myapplication.widget.SwitchView
+            android:id="@+id/switchAntiShake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isOpened="false"
+            app:primaryColor="#e60012"
+            app:primaryColorDark="#e60012"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="120dp">
+
+        <com.yng.ming.myapplication.widget.SwitchView
+            android:id="@+id/switchChangeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isOpened="false"
+            app:primaryColor="@color/blue"
+            app:primaryColorDark="#e60012"/>
+
+        <TextView
+            android:id="@+id/openButtonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="开关打开"/>
+
+    </LinearLayout>
+</LinearLayout>
