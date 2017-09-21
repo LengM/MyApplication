@@ -26,6 +26,22 @@ import butterknife.Bind;
 /**
  * 滑动删除/item拖拽
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+ * <p>
+ * BRVAH基本使用：
+ * 没有特殊需求的情况下，Adapter继承BaseQuickAdapter即可；
+ * 需要滑动/拖拽功能时，Adapter需要继承BaseItemDraggableAdapter
+ * <p>
+ * 滑动/拖拽的使用：
+ * 1.创建ItemDragAndSwipeCallback
+ * 2.创建ItemTouchHelper
+ * 3.调用ItemTouchHelper的attachToRecyclerView方法连接RecyclerView
+ * 4.启用滑动/拖拽：enableSwipeItem()/enableDragItem(...)
+ * 5.设置滑动/拖拽监听：setOnItemSwipeListener()/setOnItemDragListener()
+ * <p>
+ * 文档：
+ * http://www.jianshu.com/p/b343fcff51b0
+ * <p>
+ * 需要注意notifyDataSetChanged方法一般情况下不需要使用
  */
 public class BRVAHSwipeActivity extends BaseActivity {
 
@@ -59,7 +75,6 @@ public class BRVAHSwipeActivity extends BaseActivity {
                     @Override
                     public void run() {
                         setDate();
-                        adapter.notifyDataSetChanged();
                         easySwipeRefresh.finishRefresh();
                     }
                 }, 2000);

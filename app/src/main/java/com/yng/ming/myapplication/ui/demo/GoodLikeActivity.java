@@ -14,6 +14,12 @@ import butterknife.OnClick;
 /**
  * 点赞
  * https://github.com/venshine/GoodView
+ * <p>
+ * 使用：
+ * 1.创建GoodView
+ * 2.点击相关视图时，调用方法即可：
+ * myGoodView.setImage(R.drawable.good_checked); // 弹出动画图片,可以设置文字或其他
+ * myGoodView.show(likeImage); // 显示在指定视图
  */
 public class GoodLikeActivity extends BaseActivity {
 

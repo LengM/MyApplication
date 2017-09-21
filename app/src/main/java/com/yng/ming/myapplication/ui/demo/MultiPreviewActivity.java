@@ -23,6 +23,18 @@ import me.kareluo.intensify.image.IntensifyImageView;
 /**
  * 多图预览
  * https://github.com/kareluo/IntensifyImageView
+ * <p>
+ * 使用：
+ * 左右滑动的视图：<ViewPager></ViewPager>
+ * <p>
+ * adapter中：
+ * 1.创建IntensifyImageView
+ * 2.设置ImageView一些属性
+ * 3.设置图片
+ * <p>
+ * 关于ViewPager的使用：
+ * setCurrentItem：设置当前页面在第几页
+ * Adapter继承自PagerAdapter
  */
 public class MultiPreviewActivity extends BaseActivity {
 

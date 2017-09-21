@@ -7,13 +7,10 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.github.anzewei.parallaxbacklayout.ParallaxBack;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshKernel;
@@ -35,8 +32,23 @@ import butterknife.Bind;
 /**
  * 下拉刷新上拉加载
  * https://github.com/scwang90/SmartRefreshLayout
+ * <p>
+ * 使用：
+ * 在列表外层添加布局：<com.scwang.smartrefresh.layout.SmartRefreshLayout>
+ * <p>
+ * 设置刷新样式：
+ * setRefreshHeader();
+ * 设置刷新监听：
+ * setOnRefreshListener();
+ * <p>
+ * 设置加载样式：
+ * setRefreshFooter();
+ * 设置加载监听：
+ * setOnLoadmoreListener();
+ * <p>
+ * 关于自定义动画：
+ * 继承LinearLayout，实现RefreshHeader
  */
-@ParallaxBack(edge = ParallaxBack.Edge.LEFT)
 public class SmartRefreshActivity extends BaseActivity {
 
     @Bind(R.id.listView)
@@ -121,6 +133,52 @@ public class SmartRefreshActivity extends BaseActivity {
             addView(mProgressView, 500, 300);
         }
 
+        /////////////////////////////// 以下方法必须有 /////////////////////////////////
+
+        /**
+         * 获取真实视图（必须返回，不能为null）
+         */
+        @NonNull
+        @Override
+        public View getView() {
+            return this;
+        }
+
+        /**
+         * 获取变换方式（必须指定一个：平移、拉伸、固定、全屏）
+         */
+        @Override
+        public SpinnerStyle getSpinnerStyle() {
+            return SpinnerStyle.Translate;
+        }
+
+        /**
+         * 开始动画（开始刷新或者开始加载动画）
+         *
+         * @param layout       RefreshLayout
+         * @param height       HeaderHeight or FooterHeight
+         * @param extendHeight extendHeaderHeight or extendFooterHeight
+         */
+        @Override
+        public void onStartAnimator(RefreshLayout layout, int height, int extendHeight) {
+            progressDrawable.start();
+        }
+
+        /**
+         * 动画结束
+         *
+         * @param layout  RefreshLayout
+         * @param success 数据是否成功刷新或加载
+         * @return 完成动画所需时间 如果返回 Integer.MAX_VALUE 将取消本次完成事件，继续保持原有状态
+         */
+        @Override
+        public int onFinish(RefreshLayout layout, boolean success) {
+            progressDrawable.stop();
+            return 0; // 延迟xx毫秒之后再弹回
+        }
+
+        ////////////////////////// 以下方法基本的使用中可以不添加逻辑 //////////////////////////////////
+
         /**
          * 手指拖动下拉（会连续多次调用，用于实时控制动画关键帧）
          *
@@ -145,23 +203,6 @@ public class SmartRefreshActivity extends BaseActivity {
         @Override
         public void onReleasing(float percent, int offset, int headerHeight, int extendHeight) {
 
-        }
-
-        /**
-         * 获取真实视图（必须返回，不能为null）
-         */
-        @NonNull
-        @Override
-        public View getView() {
-            return this;
-        }
-
-        /**
-         * 获取变换方式（必须指定一个：平移、拉伸、固定、全屏）
-         */
-        @Override
-        public SpinnerStyle getSpinnerStyle() {
-            return SpinnerStyle.Translate;
         }
 
         /**
@@ -195,31 +236,6 @@ public class SmartRefreshActivity extends BaseActivity {
         @Override
         public void onHorizontalDrag(float percentX, int offsetX, int offsetMax) {
 
-        }
-
-        /**
-         * 开始动画（开始刷新或者开始加载动画）
-         *
-         * @param layout       RefreshLayout
-         * @param height       HeaderHeight or FooterHeight
-         * @param extendHeight extendHeaderHeight or extendFooterHeight
-         */
-        @Override
-        public void onStartAnimator(RefreshLayout layout, int height, int extendHeight) {
-            progressDrawable.start();
-        }
-
-        /**
-         * 动画结束
-         *
-         * @param layout  RefreshLayout
-         * @param success 数据是否成功刷新或加载
-         * @return 完成动画所需时间 如果返回 Integer.MAX_VALUE 将取消本次完成事件，继续保持原有状态
-         */
-        @Override
-        public int onFinish(RefreshLayout layout, boolean success) {
-            progressDrawable.stop();
-            return 0; // 延迟xx毫秒之后再弹回
         }
 
         /**

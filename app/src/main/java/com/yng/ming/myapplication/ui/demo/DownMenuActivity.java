@@ -84,7 +84,7 @@ public class DownMenuActivity extends BaseActivity {
     }
 
     public void showSearchMenu(View view, List<String> popupData, OnItemClickListener listener) {
-
+        // 如果已经存在一个popupWindow，就先关闭它
         if (popupWindow != null && popupWindow.isShowing()) {
             // 关闭popupWindow
             popupWindow.dismiss();
@@ -98,7 +98,7 @@ public class DownMenuActivity extends BaseActivity {
         popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         // 如果focusable为false，在一个Activity弹出一个PopupWindow，按返回键，由于PopupWindow没有焦点，会直接退出Activity。
-        // 如果focusable为true，PopupWindow弹出后，所有的触屏和物理按键都有PopupWindows处理。
+        // 如果focusable为true，PopupWindow弹出后，所有的触屏和物理按键都由PopupWindows处理。
         popupWindow.setFocusable(true);// 可以试试设为false的结果
         popupWindow.setOutsideTouchable(true); // 点击外部消失
 

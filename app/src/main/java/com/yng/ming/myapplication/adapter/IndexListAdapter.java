@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by Bright Lee on 2017/9/19 0019
+ * Adapter地址：https://github.com/byteam/SuperAdapter
  */
 
 public class IndexListAdapter extends SuperAdapter<IndexBean> {

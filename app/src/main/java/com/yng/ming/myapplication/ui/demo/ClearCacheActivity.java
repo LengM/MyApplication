@@ -33,12 +33,14 @@ public class ClearCacheActivity extends BaseActivity {
 
     @OnClick({R.id.clearCache})
     public void onClick(View view) {
+        // 清理缓存方法
         DataCleanUtil.clearAllCache(baseContext);
         init();
     }
 
     private void init() {
         try {
+            // 获取缓存大小
             clearCache.setText(DataCleanUtil.getTotalCacheSize(getApplicationContext()));
         } catch (Exception e) {
             e.printStackTrace();

@@ -17,6 +17,8 @@ import q.rorbin.badgeview.QBadgeView;
 /**
  * 消息小红点
  * https://github.com/qstumn/BadgeView
+ * 使用：
+ * 给指定布局添加一个badgeView，需要注意的是，badgeView是在给定的布局里绘制的，所以不存在将小红点移动到布局外侧的情况
  */
 public class BadgeViewActivity extends BaseActivity {
 
@@ -40,6 +42,9 @@ public class BadgeViewActivity extends BaseActivity {
         setTitleText("消息小红点");
     }
 
+    /**
+     * 添加一个小红点
+     */
     private void setBadgeView() {
         badgeView = new QBadgeView(this)
                 .bindTarget(messageLayout)

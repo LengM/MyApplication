@@ -26,6 +26,15 @@ import butterknife.Bind;
 /**
  * 简单的item侧滑
  * https://github.com/anzaizai/EasySwipeMenuLayout
+ *
+ * 使用：
+ * 在item的布局中，在item的布局外套一层<com.yng.ming.myapplication.widget.swipe.EasySwipeMenuLayout>
+ *     一般情况下该布局的宽match_parent，高wrap_content
+ *     需要指定item内容的布局id，例如：app:contentView="@+id/easyContentLayout"
+ *     左滑时出现的右侧布局，例如：app:rightMenuView="@+id/deleteText"
+ *     右滑时出现的左侧布局，例如：app:leftMenuView="@+id/collectText"
+ *
+ *     左右两侧滑动出现的布局，在EasySwipeMenuLayout中添加两个布局即可
  */
 public class EasySwipeActivity extends BaseActivity {
 
