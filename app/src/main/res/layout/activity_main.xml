@@ -21,6 +21,8 @@
             android:background="@drawable/index_search_background"
             android:gravity="center"
             android:hint="搜索"
+            android:inputType="text"
+            android:lines="1"
             android:textSize="12sp"
             />
 

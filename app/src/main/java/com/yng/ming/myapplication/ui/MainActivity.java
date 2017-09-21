@@ -88,6 +88,7 @@ public class MainActivity extends BaseActivity {
         // item点击事件
         indexListView.setOnItemClickListener(onItemClickListener);
 
+        // 解决键盘隐藏后，输入框的焦点还在的问题
         KeyboardUtils.addKeyboardToggleListener(this, new KeyboardUtils.SoftKeyboardToggleListener() {
             @Override
             public void onToggleSoftKeyboard(boolean isVisible) {

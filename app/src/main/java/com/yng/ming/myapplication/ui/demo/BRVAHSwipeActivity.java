@@ -34,8 +34,8 @@ public class BRVAHSwipeActivity extends BaseActivity {
     @Bind(R.id.easySwipeRefresh)
     SmartRefreshLayout easySwipeRefresh;
 
-    List<String> list = new ArrayList<>();
-    EasySwipeAdapter adapter;
+    List<String> list;
+    BRVAHSwipeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class BRVAHSwipeActivity extends BaseActivity {
     }
 
     private void init() {
+
         setDate();
         easySwipeRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -57,40 +58,39 @@ public class BRVAHSwipeActivity extends BaseActivity {
                 easySwipeRefresh.getLayout().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        list.clear();
                         setDate();
+                        adapter.notifyDataSetChanged();
                         easySwipeRefresh.finishRefresh();
                     }
                 }, 2000);
             }
         });
+    }
+
+    private void setDate() {
+        list = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            list.add("item " + i);
+        }
+        adapter = new BRVAHSwipeAdapter(R.layout.easy_swipe_item, list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         ItemDragAndSwipeCallback callback = new ItemDragAndSwipeCallback(adapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
-
-        adapter.enableDragItem(itemTouchHelper, R.id.easyContentLayout, true);
         adapter.setOnItemDragListener(onItemDragListener);
-
-        adapter.enableSwipeItem();
         adapter.setOnItemSwipeListener(onItemSwipeListener);
-    }
-
-    private void setDate() {
-        for (int i = 0; i < 20; i++) {
-            list.add("item " + i);
-        }
-        adapter = new EasySwipeAdapter(R.layout.easy_swipe_item, list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        adapter.enableDragItem(itemTouchHelper, R.id.easyContentLayout, true);
+        adapter.enableSwipeItem();
     }
 
     /**
      * 这里需要使用BaseItemDraggableAdapter
      */
-    public class EasySwipeAdapter extends BaseItemDraggableAdapter<String, BaseViewHolder> {
+    public class BRVAHSwipeAdapter extends BaseItemDraggableAdapter<String, BaseViewHolder> {
 
-        public EasySwipeAdapter(int layoutResId, List<String> data) {
+        public BRVAHSwipeAdapter(int layoutResId, List<String> data) {
             super(layoutResId, data);
         }
 

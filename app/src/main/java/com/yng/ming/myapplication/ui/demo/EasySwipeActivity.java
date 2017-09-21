@@ -1,6 +1,5 @@
 package com.yng.ming.myapplication.ui.demo;
 
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -105,27 +103,5 @@ public class EasySwipeActivity extends BaseActivity {
             });
         }
     }
-
-    OnItemSwipeListener onItemSwipeListener = new OnItemSwipeListener() {
-        @Override
-        public void onItemSwipeStart(RecyclerView.ViewHolder viewHolder, int pos) {
-
-        }
-
-        @Override
-        public void clearView(RecyclerView.ViewHolder viewHolder, int pos) {
-
-        }
-
-        @Override
-        public void onItemSwiped(RecyclerView.ViewHolder viewHolder, int pos) {
-
-        }
-
-        @Override
-        public void onItemSwipeMoving(Canvas canvas, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive) {
-
-        }
-    };
 
 }
