@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * 常用属性：
  * app:isOpened="false"             // 设置默认状态
  * app:primaryColor="@color/blue"   // 设置按钮开启状态时，背部的颜色
- * app:primaryColorDark="#e60012"   // 设置开关的圆形按钮外圈颜色
+ * app:primaryColorDark="#e60012"   // 设置开关的圆形按钮开启状态时，外圈颜色
  * 常用方法：
  * isOpened()：查看按钮的开关状态
  * setOpened(true)：设置按钮的开关状态
@@ -51,6 +51,9 @@ public class SwitchViewActivity extends BaseActivity {
         setTitleText("开关按钮");
     }
 
+    /**
+     * 是否开启防抖按钮的点击事件
+     */
     @OnClick({R.id.switchAntiShake})
     public void onClick(View view) {
         if (switchAntiShake.isOpened()) {
@@ -60,6 +63,9 @@ public class SwitchViewActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 防抖的点击事件
+     */
     private void antiShake() {
         switchChangeView.setOnClickListener(new OnClickListener() {
             @Override
@@ -69,6 +75,9 @@ public class SwitchViewActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 正常的点击事件
+     */
     private void noAntiShake() {
         switchChangeView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +87,9 @@ public class SwitchViewActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 开关按钮事件，打开时显示文本，关闭时隐藏文本
+     */
     private void checkSwitch() {
         if (switchChangeView.isOpened()) {
             openButtonText.setVisibility(View.VISIBLE);
