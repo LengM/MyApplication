@@ -13,6 +13,7 @@ import butterknife.OnClick;
 
 /**
  * 更换语言(中英切换)
+ * https://github.com/cekiasoo/SwitchLanguage
  */
 public class ReplaceLanguageActivity extends BaseActivity {
 
@@ -50,8 +51,8 @@ public class ReplaceLanguageActivity extends BaseActivity {
      */
     private void restartAct() {
         finish();
-        Intent _Intent = new Intent(this, MainActivity.class);
-        startActivity(_Intent);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         //清除Activity退出和进入的动画
         overridePendingTransition(0, 0);
     }
