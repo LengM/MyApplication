@@ -30,6 +30,7 @@ public class BackLayoutActivity extends BaseActivity {
      * registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
      *
      * 2.在需要滑动的Activity上添加注解：@ParallaxBack
+     * 默认：从左向右边缘滑动，视差返回
      *
      * 3.该注解的属性：
      *
