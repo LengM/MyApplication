@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -16,7 +19,9 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
+import com.yng.ming.myapplication.base.OnClickListener;
 import com.yng.ming.myapplication.util.log.Logcat;
+import com.yng.ming.myapplication.widget.MyDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +47,9 @@ import butterknife.Bind;
  * http://www.jianshu.com/p/b343fcff51b0
  * <p>
  * 需要注意notifyDataSetChanged方法一般情况下不需要使用
+ * <p>
+ * 现在存在的问题：
+ * 刷新后，侧滑删除的功能失效
  */
 public class BRVAHSwipeActivity extends BaseActivity {
 
@@ -66,7 +74,7 @@ public class BRVAHSwipeActivity extends BaseActivity {
     }
 
     private void init() {
-
+        initDialog();
         setDate();
         easySwipeRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -98,6 +106,22 @@ public class BRVAHSwipeActivity extends BaseActivity {
         adapter.setOnItemSwipeListener(onItemSwipeListener);
         adapter.enableDragItem(itemTouchHelper, R.id.easyContentLayout, true);
         adapter.enableSwipeItem();
+    }
+
+    /**
+     * 提示语
+     */
+    private void initDialog() {
+        View warnView = LayoutInflater.from(this).inflate(R.layout.dialog_brvah_warning, null);
+        TextView sureView = (TextView) warnView.findViewById(R.id.sureView);
+        final MyDialog myDialog = new MyDialog(this, warnView);
+        myDialog.show();
+        sureView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                myDialog.dismiss();
+            }
+        });
     }
 
     /**

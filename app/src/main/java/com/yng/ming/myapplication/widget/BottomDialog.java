@@ -27,7 +27,7 @@ public class BottomDialog extends AlertDialog {
     Context mContext;
 
     public BottomDialog(Context context) {
-        super(context, R.style.MyDialog); // 自定义全屏style
+        super(context, R.style.BottomDialogStyle); // 自定义全屏style
         this.mContext = context;
     }
 
