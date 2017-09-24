@@ -28,7 +28,7 @@
 
 * 滑动删除/item拖拽
 
-![](art/swipe.gif)
+![image](art/swipe.gif)
 
 * 仿IOS开关按钮
 
