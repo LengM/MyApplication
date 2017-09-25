@@ -43,7 +43,7 @@
             android:id="@+id/switchChangeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:isOpened="false"
+            app:isOpened="true"
             app:primaryColor="@color/blue"
             app:primaryColorDark="#e60012"/>
 
