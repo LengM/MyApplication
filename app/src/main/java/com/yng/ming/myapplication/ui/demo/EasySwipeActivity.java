@@ -1,15 +1,13 @@
 package com.yng.ming.myapplication.ui.demo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -17,6 +15,9 @@ import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
 import com.yng.ming.myapplication.base.OnClickListener;
 import com.yng.ming.myapplication.widget.swipe.EasySwipeMenuLayout;
+
+import org.byteam.superadapter.SuperAdapter;
+import org.byteam.superadapter.SuperViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +27,15 @@ import butterknife.Bind;
 /**
  * 简单的item侧滑
  * https://github.com/anzaizai/EasySwipeMenuLayout
- *
+ * <p>
  * 使用：
  * 在item的布局中，在item的布局外套一层<com.yng.ming.myapplication.widget.swipe.EasySwipeMenuLayout>
- *     一般情况下该布局的宽match_parent，高wrap_content
- *     需要指定item内容的布局id，例如：app:contentView="@+id/easyContentLayout"
- *     左滑时出现的右侧布局，例如：app:rightMenuView="@+id/deleteText"
- *     右滑时出现的左侧布局，例如：app:leftMenuView="@+id/collectText"
- *
- *     左右两侧滑动出现的布局，在EasySwipeMenuLayout中添加两个布局即可
+ * 一般情况下该布局的宽match_parent，高wrap_content
+ * 需要指定item内容的布局id，例如：app:contentView="@+id/easyContentLayout"
+ * 左滑时出现的右侧布局，例如：app:rightMenuView="@+id/deleteText"
+ * 右滑时出现的左侧布局，例如：app:leftMenuView="@+id/collectText"
+ * <p>
+ * 左右两侧滑动出现的布局，在EasySwipeMenuLayout中添加两个布局即可
  */
 public class EasySwipeActivity extends BaseActivity {
 
@@ -59,9 +60,6 @@ public class EasySwipeActivity extends BaseActivity {
     }
 
     private void init() {
-        adapter = new EasySwipeAdapter(R.layout.easy_swipe_item, null);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
         easySwipeRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -82,31 +80,33 @@ public class EasySwipeActivity extends BaseActivity {
         for (int i = 0; i < 20; i++) {
             list.add("item " + i);
         }
-        adapter.addData(list);
-        adapter.notifyDataSetChanged();
+        adapter = new EasySwipeAdapter(this, list, R.layout.easy_swipe_item);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 
-    public class EasySwipeAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+    public class EasySwipeAdapter extends SuperAdapter<String> {
 
-        public EasySwipeAdapter(@LayoutRes int layoutResId, @Nullable List<String> data) {
-            super(layoutResId, data);
+
+        public EasySwipeAdapter(Context context, List<String> items, @LayoutRes int layoutResId) {
+            super(context, items, layoutResId);
         }
 
         @Override
-        protected void convert(final BaseViewHolder helper, String item) {
-            helper.setText(R.id.easyContent, item);
-            helper.getView(R.id.easyContentLayout).setOnClickListener(new OnClickListener() {
+        public void onBind(final SuperViewHolder holder, int viewType, int layoutPosition, String item) {
+            holder.setText(R.id.easyContent, item);
+            holder.findViewById(R.id.easyContentLayout).setOnClickListener(new OnClickListener() {
                 @Override
                 public void onNoDoubleClick(View v) {
-                    EasySwipeMenuLayout easySwipeMenuLayout = helper.getView(R.id.easySwipeMenuLayout);
+                    EasySwipeMenuLayout easySwipeMenuLayout = holder.getView(R.id.easySwipeMenuLayout);
                     easySwipeMenuLayout.resetStatus();
                 }
             });
-            helper.getView(R.id.deleteText).setOnClickListener(new OnClickListener() {
+            holder.findViewById(R.id.deleteText).setOnClickListener(new OnClickListener() {
                 @Override
                 public void onNoDoubleClick(View v) {
                     Toast.makeText(EasySwipeActivity.this, "你点击了删除按钮", Toast.LENGTH_SHORT).show();
-                    EasySwipeMenuLayout easySwipeMenuLayout = helper.getView(R.id.easySwipeMenuLayout);
+                    EasySwipeMenuLayout easySwipeMenuLayout = holder.getView(R.id.easySwipeMenuLayout);
                     easySwipeMenuLayout.resetStatus();
                 }
             });
