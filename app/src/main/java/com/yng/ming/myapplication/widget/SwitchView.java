@@ -23,6 +23,8 @@ import android.view.animation.AccelerateInterpolator;
 import com.yng.ming.myapplication.R;
 
 /**
+ * 仿苹果开关按钮
+ * <p>
  * QQ Group 274306954
  * 文章地址：http://blog.csdn.net/yan8024/article/details/46817593
  * <p>
