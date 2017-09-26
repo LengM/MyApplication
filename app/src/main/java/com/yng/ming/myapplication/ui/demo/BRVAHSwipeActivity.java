@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -19,9 +16,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.base.BaseActivity;
-import com.yng.ming.myapplication.base.OnClickListener;
 import com.yng.ming.myapplication.util.log.Logcat;
-import com.yng.ming.myapplication.widget.MyDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +45,7 @@ import butterknife.Bind;
  * <p>
  * 现在存在的问题：
  * 刷新后，侧滑删除的功能失效
+ * --> 已解决，因为自己对RecyclerView不熟。。详细看代码
  */
 public class BRVAHSwipeActivity extends BaseActivity {
 
@@ -60,6 +56,7 @@ public class BRVAHSwipeActivity extends BaseActivity {
 
     List<String> list;
     BRVAHSwipeAdapter adapter;
+    ItemTouchHelper itemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +71,7 @@ public class BRVAHSwipeActivity extends BaseActivity {
     }
 
     private void init() {
-        initDialog();
+//        initDialog();
         setDate();
         easySwipeRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -82,6 +79,7 @@ public class BRVAHSwipeActivity extends BaseActivity {
                 easySwipeRefresh.getLayout().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        // refresh时最好的做法应该只更新数据
                         setDate();
                         easySwipeRefresh.finishRefresh();
                     }
@@ -98,10 +96,17 @@ public class BRVAHSwipeActivity extends BaseActivity {
         adapter = new BRVAHSwipeAdapter(R.layout.easy_swipe_item, list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
+        /**
+         * 在往rv添加一个新的itemTouchHelper前，需要先将之前的itemTouchHelper去掉，即执行
+         * itemTouchHelper.attachToRecyclerView(null);，不然后续的操作扔会在之前的adapter中进行
+         */
+        if (itemTouchHelper != null) {
+            itemTouchHelper.attachToRecyclerView(null);
+        }
         ItemDragAndSwipeCallback callback = new ItemDragAndSwipeCallback(adapter);
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
         adapter.setOnItemDragListener(onItemDragListener);
         adapter.setOnItemSwipeListener(onItemSwipeListener);
         adapter.enableDragItem(itemTouchHelper, R.id.easyContentLayout, true);
@@ -111,7 +116,7 @@ public class BRVAHSwipeActivity extends BaseActivity {
     /**
      * 提示语
      */
-    private void initDialog() {
+/*    private void initDialog() {
         View warnView = LayoutInflater.from(this).inflate(R.layout.dialog_brvah_warning, null);
         TextView sureView = (TextView) warnView.findViewById(R.id.sureView);
         final MyDialog myDialog = new MyDialog(this, warnView);
@@ -122,7 +127,7 @@ public class BRVAHSwipeActivity extends BaseActivity {
                 myDialog.dismiss();
             }
         });
-    }
+    }*/
 
     /**
      * 这里需要使用BaseItemDraggableAdapter
