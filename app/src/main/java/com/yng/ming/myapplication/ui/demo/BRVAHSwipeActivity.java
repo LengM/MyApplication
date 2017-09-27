@@ -71,7 +71,7 @@ public class BRVAHSwipeActivity extends BaseActivity {
     }
 
     private void init() {
-//        initDialog();
+        initView();
         setDate();
         easySwipeRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -88,12 +88,8 @@ public class BRVAHSwipeActivity extends BaseActivity {
         });
     }
 
-    private void setDate() {
-        list = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            list.add("item " + i);
-        }
-        adapter = new BRVAHSwipeAdapter(R.layout.easy_swipe_item, list);
+    private void initView() {
+        adapter = new BRVAHSwipeAdapter(R.layout.easy_swipe_item, null);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         /**
@@ -113,21 +109,13 @@ public class BRVAHSwipeActivity extends BaseActivity {
         adapter.enableSwipeItem();
     }
 
-    /**
-     * 提示语
-     */
-/*    private void initDialog() {
-        View warnView = LayoutInflater.from(this).inflate(R.layout.dialog_brvah_warning, null);
-        TextView sureView = (TextView) warnView.findViewById(R.id.sureView);
-        final MyDialog myDialog = new MyDialog(this, warnView);
-        myDialog.show();
-        sureView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onNoDoubleClick(View v) {
-                myDialog.dismiss();
-            }
-        });
-    }*/
+    private void setDate() {
+        list = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            list.add("item " + i);
+        }
+        adapter.setNewData(list);
+    }
 
     /**
      * 这里需要使用BaseItemDraggableAdapter
