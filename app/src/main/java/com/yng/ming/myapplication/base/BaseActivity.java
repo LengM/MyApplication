@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.Utils;
 import com.bumptech.glide.Glide;
 import com.yng.ming.myapplication.R;
 import com.yng.ming.myapplication.app.MainApplication;
@@ -48,6 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Logcat.i(this.toString() + " - ==> onCreate...");
         baseContext = this;
+
         // 透明状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -59,9 +61,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.BLACK);
             window.setNavigationBarColor(Color.BLACK);
         }
+
         // activity管理
         mainApplication = (MainApplication) getApplication();
         mainApplication.getActivityList().add(this);
+
+        // 初始化工具
+        Utils.init(mainApplication);
     }
 
     /**

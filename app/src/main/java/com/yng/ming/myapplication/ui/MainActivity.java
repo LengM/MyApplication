@@ -31,6 +31,7 @@ import com.yng.ming.myapplication.ui.demo.EditDemoActivity;
 import com.yng.ming.myapplication.ui.demo.GoodLikeActivity;
 import com.yng.ming.myapplication.ui.demo.HorizontalCheckActivity;
 import com.yng.ming.myapplication.ui.demo.ImgGridViewActivity;
+import com.yng.ming.myapplication.ui.demo.pager.DynamicDataPagerActivity;
 import com.yng.ming.myapplication.ui.demo.ReplaceLanguageActivity;
 import com.yng.ming.myapplication.ui.demo.SmartRefreshActivity;
 import com.yng.ming.myapplication.ui.demo.SwitchViewActivity;
@@ -152,6 +153,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case "13": // 开关按钮
                     startActivity(new Intent(MainActivity.this, SwitchViewActivity.class));
+                    break;
+                case "14": // 动态获取数据的ViewPager
+                    startActivity(new Intent(MainActivity.this, DynamicDataPagerActivity.class));
                     break;
             }
         }

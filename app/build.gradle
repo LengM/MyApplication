@@ -80,4 +80,7 @@ dependencies {
 
     // Android开发工具 https://github.com/Blankj/AndroidUtilCode
     compile 'com.blankj:utilcode:1.9.0'
+
+    // 图表库 https://github.com/PhilJay/MPAndroidChart
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }

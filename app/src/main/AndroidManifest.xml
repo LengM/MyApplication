@@ -46,6 +46,7 @@
         <activity android:name=".ui.demo.EasySwipeActivity"/>
         <activity android:name=".ui.demo.BRVAHSwipeActivity"/>
         <activity android:name=".ui.demo.SwitchViewActivity"/>
+        <activity android:name=".ui.demo.pager.DynamicDataPagerActivity"/>
 
     </application>
 
